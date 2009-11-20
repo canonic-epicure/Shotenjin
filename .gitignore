@@ -5,5 +5,5 @@ blib
 .externalToolBuilders
 MANIFEST.bak
 Makefile.PL
-doc
+/doc
 /inc/*

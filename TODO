@@ -1,8 +1,7 @@
 TASKS
 =====
 
-- clear CONT after returning from the continued method
-- global CONT instead of scoped? (no attach then, only detach)
 
 
-- VAR, GET, SET - analog of scoped variables
+DONE
+====
