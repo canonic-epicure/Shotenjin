@@ -4,17 +4,21 @@ Class('My.Template', {
     
     template : {
         /*tj
-            Hello #{name}!
+            Hello [% name %]!
             <ul>
-            <?js for (var i = 0, n = items.length; i < n; i++) { ?>
-             <li>${items[i]}</li>
-            <?js } ?>
+            [%\
+                for (var i = 0, n = items.length; i < n; i++) { 
+            %]
+                    <li>[%= items[i] %]</li>
+            [% 
+                } 
+            %]
             </ul>
         
         
             <div class="thumbnail photoThumbnailMid medium12">
                 
-                <p class="centered ">[% name %]</p>
+                <p class="centered ">[%js name %]</p>
                 
                 <div class="x-rawbackground paper1 photo">
                     ${ App.my('/Travel::MainLayout.center/Travel::Photo::Single',{ 'photo_id' = current_photo.id } ) } <img width=170 height=170 src="[% src(current_photo.path, 170, 170, 'place') %]"></a>
