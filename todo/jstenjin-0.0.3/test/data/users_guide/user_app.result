@@ -1,0 +1,31 @@
+$ js user_app.cgi create
+<html>
+  <body>
+
+    <h1>Create User</h1>
+
+    <div id="main-content">
+<form action="user_app.cgi" method="post">
+  <input type="hidden" name="action" value="create" />
+<p>
+  Name:  <input type="text" name="name"  value="" /><br />
+  Email: <input type="text" name="email" value="" /><br />
+  Gender:
+  <input type="radio" name="gender" value="m"  />Male
+  <input type="radio" name="gender" value="f"  />Female
+</p>
+  <input type="submit" value="Create" />
+</form>
+
+    </div>
+
+    <div id="footer">
+<hr />
+<address>
+  <a href="mailto:webmaster@example.com">webmaster@example.com</a>
+</address>
+    </div>
+
+  </body>
+</html>
+

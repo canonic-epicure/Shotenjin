@@ -1,0 +1,7 @@
+<?xml version="1.0 ?>
+<?js //@ARGS x, y ?>
+<p>
+  x = #{x}
+  y = #{y}
+  z = #{z}
+</p>

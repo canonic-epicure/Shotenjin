@@ -1,0 +1,5 @@
+<?JS // ex. link_to('Show', '/show/1')  => <a href="/show/1">Show</a> ?>
+<?JS function link_to(label, url) { ?>
+<?JS     return '<a href="' + escape(url) + '">' + label + '</a>'; ?>
+<?JS } ?>
+#{{link_to('Show '+_P('params["name"]'), '/items/show/'+_p('params["id"]'))}}

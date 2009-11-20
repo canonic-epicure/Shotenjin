@@ -1,0 +1,14 @@
+$ jstenjin -s example1.jshtml
+var _buf = [];  _buf.push('<table>\n\
+  <tbody>\n');
+ var items = ['<foo>', 'bar&bar', '"baz"'];
+ for (var i = 0, n = items.length; i < n; i++) {
+     var item = items[i];
+ _buf.push('    <tr>\n\
+      <td>', item, '</td>\n\
+      <td>', escapeXml(item), '</td>\n\
+    </tr>\n');
+ }
+ _buf.push('  <tbody>\n\
+</table>\n');
+_buf.join('')

@@ -1,0 +1,4 @@
+<hr />
+<address>
+  <a href="mailto:${webmaster_email}">${webmaster_email}</a>
+</address>

@@ -1,0 +1,11 @@
+$ python helpers1.py
+***** preprocessed *****
+_buf.extend(('''<p>
+''', to_str(link_to('Create', action='new')), '''
+<a href="/user/new">Create</a>
+</p>\n''', ));
+***** output *****
+<p>
+<a href="/user/new">Create</a>
+<a href="/user/new">Create</a>
+</p>

@@ -1,0 +1,27 @@
+<html>
+ <body>
+
+<?js /// if variable 'header_part' is defined then print it, ?>
+<?js /// else print default header part. ?>
+  <div id="header">
+<?js startPlaceholder('header_part'); ?>
+   <img src="img/logo.png" alt="logo" ?>
+<?js stopPlaceholder(); ?>
+  </div>
+
+<?js /// main content part ?>
+  <div id="content">
+<?js echo(content_part); ?>
+  </div>
+
+<?js /// if variable 'footer_part' is defined then print it, ?>
+<?js /// else print default footer part. ?>
+  <div id="footer">
+<?js startPlaceholder('footer_part'); ?>
+   <hr />
+   <em>webmaster@example.com</em>
+<?js stopPlaceholder(); ?>
+  </div>
+  
+ </body>
+</html>

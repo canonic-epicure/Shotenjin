@@ -1,0 +1,2 @@
+$ jstenjin --preprocess -sb example13.jshtml
+ _buf.push('<a href="/items/show/', params["id"], '">Show ', escapeXml(params["name"]), '</a>\n');

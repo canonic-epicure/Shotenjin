@@ -1,0 +1,5 @@
+<?js /// use default layout template name ?>
+<?js _context._layout = true; ?>
+<div id="content">
+<?js echo(_content); ?>
+</div>

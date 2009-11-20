@@ -1,0 +1,12 @@
+<?js /// '_context._layout' variable is equivarent to '{% extends "foobar.html" %}' ?>
+<?js /// in Django template engine. ?>
+<?js _context._layout = 'ex9-customlayout.jshtml'; ?>
+
+<?js /// main content part ?>
+<?js startCapture('content_part'); ?>
+<ul>
+<?js for (var i = 0, n = items.length; i < n; i++) { ?>
+  <li>${items[i]}</li>
+<?js } ?>
+</ul>
+<?js stopCapture(); ?>

@@ -1,0 +1,4 @@
+<?js _context.title = 'Create user'; ?>
+<?js _context.label = 'Create'; ?>
+<?js _context.action = 'action.cgi'; ?>
+<?js include(':form'); ?>

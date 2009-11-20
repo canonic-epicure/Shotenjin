@@ -1,0 +1,9 @@
+$ jstenjin -c 'text:"foo", items:["a","b","c"], hash:{x:1,y:2}' example5.jshtml
+text:  foo
+items:
+  - a
+  - b
+  - c
+hash:
+  x: 1
+  y: 2

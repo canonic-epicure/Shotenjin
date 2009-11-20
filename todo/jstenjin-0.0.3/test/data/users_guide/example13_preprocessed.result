@@ -1,0 +1,2 @@
+$ jstenjin -P example13.jshtml
+<a href="/items/show/#{params["id"]}">Show ${params["name"]}</a>

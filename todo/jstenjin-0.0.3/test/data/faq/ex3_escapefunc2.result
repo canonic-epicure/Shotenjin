@@ -1,0 +1,3 @@
+$ jstenjin -s --escapefunc=.escapeHTML ex3.jshtml
+var _buf = [];  _buf.push('Hello ', (name).escapeHTML(), '!\n');
+_buf.join('')

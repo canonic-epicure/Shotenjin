@@ -1,0 +1,25 @@
+$ jstenjin -c "items:['AAA','BBB','CCC']" ex9-content.jshtml
+<html>
+ <body>
+
+  <div id="header">
+   <img src="img/logo.png" alt="logo" ?>
+  </div>
+
+  <div id="content">
+<ul>
+  <li>AAA</li>
+  <li>BBB</li>
+  <li>CCC</li>
+</ul>
+  </div>
+
+  <div id="footer">
+<address style="text-align:right">
+  copyright&copy; 2007 kuwata-lab all rights reserved<br />
+  <a href="webmaster&#64;kuwata-lab.com">webmaster&#64;kuwata-lab.com</a>
+</address>
+  </div>
+  
+ </body>
+</html>

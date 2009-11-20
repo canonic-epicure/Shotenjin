@@ -1,0 +1,11 @@
+<?js /// '_context._layout' is equivarent to '{% extends "foobar.html" %}' ?>
+<?js /// in Django template engine. ?>
+<?js _context._layout = 'ex9-baselayout.jshtml'; ?>
+
+<?js /// you can override header or footer by capturing. ?>
+<?js startCapture('footer_part'); ?>
+<address style="text-align:right">
+  copyright&copy; 2007 kuwata-lab all rights reserved<br />
+  <a href="webmaster&#64;kuwata-lab.com">webmaster&#64;kuwata-lab.com</a>
+</address>
+<?js stopCapture(); ?>

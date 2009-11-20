@@ -1,0 +1,16 @@
+$ js example15.js
+var _buf = [];  _buf.push('<h1>', title, '</h1>\n\
+<ul>\n');
+ for (var i = 0, n = items.length; i < n; i++) {
+ _buf.push(' <li>', (items[i]).escapeHTML(), '</li>\n');
+ }
+ _buf.push('</ul>\n');
+_buf.join('')
+
+<h1>jsTenjin Example</h1>
+<ul>
+ <li>&lt;foo&gt;</li>
+ <li>&amp;bar</li>
+ <li>&quot;baz&quot;</li>
+</ul>
+

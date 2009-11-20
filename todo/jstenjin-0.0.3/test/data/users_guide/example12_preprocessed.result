@@ -1,0 +1,10 @@
+$ jstenjin -P example12.jshtml
+<?js var chk = {};  chk[params.state] = ' selected="selected"'; ?>
+<select name="state">
+  <option value="">-</option>
+  <option value="CA"#{chk.CA||''}>California</option>
+  <option value="FL"#{chk.FL||''}>Florida</option>
+  <option value="HI"#{chk.HI||''}>Hawaii</option>
+  <option value="NY"#{chk.NY||''}>New York</option>
+  <option value="TX"#{chk.TX||''}>Texas</option>
+</select>

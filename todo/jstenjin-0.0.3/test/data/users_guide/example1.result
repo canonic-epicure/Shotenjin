@@ -1,0 +1,17 @@
+$ jstenjin example1.jshtml
+<table>
+  <tbody>
+    <tr>
+      <td><foo></td>
+      <td>&lt;foo&gt;</td>
+    </tr>
+    <tr>
+      <td>bar&bar</td>
+      <td>bar&amp;bar</td>
+    </tr>
+    <tr>
+      <td>"baz"</td>
+      <td>&quot;baz&quot;</td>
+    </tr>
+  <tbody>
+</table>

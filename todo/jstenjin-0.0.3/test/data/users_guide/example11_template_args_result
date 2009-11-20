@@ -1,0 +1,3 @@
+$ jstenjin -wc 'x:10,y:20' example11.jshtml
+*** ERROR:
+example11.jshtml: y is not defined

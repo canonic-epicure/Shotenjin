@@ -1,0 +1,5 @@
+<p>
+<?js //@ARGS x ?>
+x = ${x}
+y = ${y}   # error
+</p>

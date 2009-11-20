@@ -1,0 +1,25 @@
+<html lang="en">
+  <head>
+    <title>${title}</title>
+  </head>
+  <body>
+
+    <!-- HEADER -->
+<?js startPlaceholder('header_part'); ?>
+    <h1>${title}</h1>
+<?js stopPlaceholder(); ?>
+    <!-- /HEADER -->
+
+    <!-- CONTENT -->
+#{content_part}
+    <!-- /CONTENT -->
+
+    <!-- FOOTER -->
+<?js startPlaceholder('footer_part'); ?>
+    <hr />
+    <address>webmaster@localhost</address>
+<?js stopPlaceholder(); ?>
+    <!-- /FOOTER -->
+
+  </body>
+</html>

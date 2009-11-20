@@ -1,0 +1,5 @@
+$ js ex6-expr-pattern.js
+<p>HTML escaped: AAA&amp;BBB</p>
+<p>not escaped:  AAA&BBB</p>
+<p>not escaped:  AAA&BBB</p>
+

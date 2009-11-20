@@ -1,0 +1,6 @@
+$ jstenjin -s example10.jshtml
+var _buf = [];  _buf.push('<?xml version="1.0"?>\n');
+ var title = _context['title']; var name = _context['name'];
+ _buf.push('<h1>', escapeXml(title), '</h1>\n\
+<p>Hello ', escapeXml(name), '!</p>\n');
+_buf.join('')

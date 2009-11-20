@@ -1,0 +1,3 @@
+$ jstenjin -c 'x:10, y:20, z:30' ex5.jshtml
+*** Error:
+ex5.jshtml:3: ReferenceError: "z" is not defined.

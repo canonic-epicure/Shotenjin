@@ -1,0 +1,16 @@
+<?JS load('helper.js'); ?>
+<form>
+  <label>Select your language:</label>
+  <select name="lang">
+<?js var table = { }; table[params.lang] = ' selected="selected"'; ?>
+<?JS for (var i = 0, n = LANGUAGES.length; i < n; i++) { ?>
+<?JS     var tuple = LANGUAGES[i]; var val = tuple[0], name = tuple[1]; ?>
+    <option value="${{val}}" #{table.#{{val}}||''}>${{name}}</option>
+<?JS } ?>
+  </select>
+  <input type="submit" value="OK" />
+</form>
+<p>
+  #{{link_to('Back', {action:'index'})}} |
+  #{{link_to('Show '+_P('params.name'), {action:'show', id:_p('params.id')})}}
+</p>

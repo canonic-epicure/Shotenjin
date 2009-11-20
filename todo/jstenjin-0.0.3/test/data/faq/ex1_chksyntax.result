@@ -1,0 +1,4 @@
+$ jstenjin -z ex1.jshtml
+[NG] ex1.jshtml
+ex1.jshtml:2: SyntaxError: missing ; after for-loop initializer
+ex1.jshtml:2:  for (var i = 0, i <= 10, i++) {

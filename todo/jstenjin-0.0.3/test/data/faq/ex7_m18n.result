@@ -1,0 +1,11 @@
+$ js ex7-m18n.js
+--- lang: en ---
+<div>
+ <p>Hello World!</p>
+</div>
+
+--- lang: fr ---
+<div>
+ <p>Bonjour World!</p>
+</div>
+

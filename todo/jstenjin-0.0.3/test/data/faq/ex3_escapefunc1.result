@@ -1,0 +1,4 @@
+$ js ex3.js
+var _buf = [];  _buf.push('Hello ', (name).escapeHTML(), '!\n');
+_buf.join('')
+

@@ -1,0 +1,4 @@
+<p>
+#{link_to(escape(user['name']), action='show', id=user['id'])}
+#{{link_to(_P("user['name']"), action='show', id=_p("user['id']"))}}
+</p>

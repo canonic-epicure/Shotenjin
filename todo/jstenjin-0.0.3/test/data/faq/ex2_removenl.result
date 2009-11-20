@@ -1,0 +1,19 @@
+$ jstenjin --layout=ex2-layout.jshtml ex2-content.jshtml
+<!-- -->
+foo
+bar
+baz
+
+<!-- -->
+
+<!-- -->
+foo
+bar
+baz
+<!-- -->
+
+<!-- -->
+foo
+bar
+baz
+<!-- -->

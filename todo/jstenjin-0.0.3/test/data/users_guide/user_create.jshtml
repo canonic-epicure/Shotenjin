@@ -1,0 +1,6 @@
+<?js //@ARGS ?>
+<form action="user_app.cgi" method="post">
+  <input type="hidden" name="action" value="create" />
+<?js include(':form'); ?>
+  <input type="submit" value="Create" />
+</form>

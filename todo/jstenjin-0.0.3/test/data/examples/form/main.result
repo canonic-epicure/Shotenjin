@@ -1,0 +1,22 @@
+$ js main.js
+<html>
+ <body>
+  <h1>Update user</h1>
+  <div class="main-content">
+<form action="update.cgi" method="post">
+  <p>
+    <label>Name:</label>
+    <input type="text" name="name" value="Foo" />
+  </p>
+  <p>
+    <label>Gender:</label>
+    <input type="radio" name="gender" value="M"  checked="checked" />Man
+    <input type="radio" name="gender" value="W"  />Woman
+  </p>
+  <input type="submit" value="Update" />
+</form>
+
+  </div>
+ </body>
+</html>
+

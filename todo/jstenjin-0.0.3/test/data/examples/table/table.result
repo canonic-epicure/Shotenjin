@@ -1,0 +1,21 @@
+$ js table.js
+<html>
+  <body>
+    <h1>Bordered Table Example</h1>
+    <table>
+      <tr bgcolor="#CCCCFF">
+        <td>1</td>
+        <td>&lt;AAA&gt;</td>
+      </tr>
+      <tr bgcolor="#FFCCCC">
+        <td>2</td>
+        <td>B&amp;B</td>
+      </tr>
+      <tr bgcolor="#CCCCFF">
+        <td>3</td>
+        <td>&quot;CCC&quot;</td>
+      </tr>
+    </table>
+  </body>
+</html>
+

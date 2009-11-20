@@ -1,0 +1,5 @@
+<?js _context.title = 'Document Title'; ?>
+<?js _context.url = '/next/page'; ?>
+<table>
+  ...content...
+</table>

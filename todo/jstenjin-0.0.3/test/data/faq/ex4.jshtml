@@ -1,0 +1,2 @@
+<?js var user = typeof(_context.user) == 'undefined' ? 'Guest' : _context.user; ?>
+Hello ${user}!

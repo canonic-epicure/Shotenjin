@@ -1,0 +1,8 @@
+<html>
+  <body>
+<?js if (typeof(_context['title']) != 'undefined') { ?>
+    <h1>${title}</h1>
+<?js } ?>
+<?js echo(_content); ?>
+  </body>
+</html>

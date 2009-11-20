@@ -1,0 +1,14 @@
+$ jstenjin -S example1.jshtml
+var _buf = []; 
+
+ var items = ['<foo>', 'bar&bar', '"baz"'];
+ for (var i = 0, n = items.length; i < n; i++) {
+     var item = items[i];
+
+           _buf.push(item);
+           _buf.push(escapeXml(item));
+
+ }
+
+
+_buf.join('')

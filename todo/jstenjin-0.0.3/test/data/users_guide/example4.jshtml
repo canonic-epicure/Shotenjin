@@ -1,0 +1,13 @@
+<p>
+  ${text}
+  #{num}
+  #{flag}
+</p>
+
+<?js for (var i = 0, n = items.length; i < n; i++) { ?>
+<p>${items[i]}</p>
+<?js } ?>
+
+<?js for (var key in hash) { ?>
+<p>#{key} = ${hash[key]}</p>
+<?js } ?>

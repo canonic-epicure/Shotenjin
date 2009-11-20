@@ -1,0 +1,7 @@
+<?js //@ARGS params ?>
+<form action="user_app.cgi" method="post">
+  <input type="hidden" name="action" value="edit" />
+  <input type="hidden" name="id" value="${params.id}" />
+<?js include(':form'); ?>
+  <input type="submit" value="Edit" />
+</form>

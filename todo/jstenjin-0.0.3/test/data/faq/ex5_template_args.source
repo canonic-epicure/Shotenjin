@@ -1,0 +1,9 @@
+$ jstenjin -s ex5.jshtml
+var _buf = [];  _buf.push('<?xml version="1.0 ?>\n');
+ var x = _context['x']; var y = _context['y'];
+ _buf.push('<p>\n\
+  x = ', x, '\n\
+  y = ', y, '\n\
+  z = ', z, '\n\
+</p>\n');
+_buf.join('')

@@ -1,0 +1,19 @@
+<html>
+  <body>
+
+    <div id="sidemenu">
+<?js include('sidemenu.jshtml'); ?>
+    </div>
+
+    <div id="main-content">
+<?js for (var i = 0, n = items.length; i < n; i++) { ?>
+      <p>${items[i]}</p>
+<?js } ?>
+    </div>
+
+    <div id="footer">
+<?js include('footer.jshtml'); ?>
+    </div>
+
+  </body>
+</table>

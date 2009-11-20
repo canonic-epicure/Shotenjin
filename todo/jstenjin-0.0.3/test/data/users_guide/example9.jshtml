@@ -1,0 +1,18 @@
+<?js _context['title'] = 'Capture Test'; ?>
+<html>
+  <body>
+
+<?js startCapture('content_part'); ?>
+    <ul>
+<?js for (var i = 0; i <= 2; i++) { ?>
+      <li>i = #{i}</li>
+<?js } ?>
+    </ul>
+<?js stopCapture() ?>
+
+<?js startCapture('footer_part'); ?>
+    <div class="footer">copyright&copy; 2007 kuwata-lab.com</div>
+<?js stopCapture(); ?>
+
+  </body>
+</html>

@@ -1,0 +1,4 @@
+<p>
+#{link_to('Create', action='new')}
+#{{link_to('Create', action='new')}}
+</p>

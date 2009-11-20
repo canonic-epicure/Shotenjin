@@ -1,0 +1,6 @@
+<?js _context.title = 'Changing Layout Template Test'; ?>
+<?js /// specify layout template name ?>
+<?js _context._layout = 'ex8-mylayout.jshtml'; ?>
+foo
+bar
+baz

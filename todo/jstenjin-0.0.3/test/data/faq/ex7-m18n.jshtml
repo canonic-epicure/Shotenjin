@@ -1,0 +1,4 @@
+<div>
+<?JS // '_()' is a translation method ?>
+ <p>${{_('Hello')}} ${username}!</p>
+</div>

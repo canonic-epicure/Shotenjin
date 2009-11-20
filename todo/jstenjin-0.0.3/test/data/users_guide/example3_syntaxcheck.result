@@ -1,0 +1,3 @@
+$ jstenjin -z example3.jshtml
+[NG] example3.jshtml
+example3.jshtml:7: SyntaxError: missing } in compound statement

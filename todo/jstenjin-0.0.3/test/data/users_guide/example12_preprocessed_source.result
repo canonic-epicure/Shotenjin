@@ -1,0 +1,10 @@
+$ jstenjin --preprocess -sb example12.jshtml
+ var chk = {};  chk[params.state] = ' selected="selected"';
+ _buf.push('<select name="state">\n\
+  <option value="">-</option>\n\
+  <option value="CA"', chk.CA||'', '>California</option>\n\
+  <option value="FL"', chk.FL||'', '>Florida</option>\n\
+  <option value="HI"', chk.HI||'', '>Hawaii</option>\n\
+  <option value="NY"', chk.NY||'', '>New York</option>\n\
+  <option value="TX"', chk.TX||'', '>Texas</option>\n\
+</select>\n');

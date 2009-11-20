@@ -1,0 +1,13 @@
+$ jstenjin -f datafile.js example4.jshtml
+<p>
+  foo
+  3.14
+  true
+</p>
+
+<p>foo</p>
+<p>bar</p>
+<p>baz</p>
+
+<p>x = 1</p>
+<p>y = 2</p>

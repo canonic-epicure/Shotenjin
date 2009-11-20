@@ -1,0 +1,11 @@
+$ python helpers2.py
+***** preprocessed *****
+_buf.extend(('''<p>
+''', to_str(link_to(escape(user['name']), action='show', id=user['id'])), '''
+<a href="/user/show/''', to_str(user['id']), '''">''', escape(to_str(user['name'])), '''</a>
+</p>\n''', ));
+***** output *****
+<p>
+<a href="/user/show/123">Tom&amp;Jerry</a>
+<a href="/user/show/123">Tom&amp;Jerry</a>
+</p>

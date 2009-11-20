@@ -1,0 +1,8 @@
+$ jstenjin -s ex.jshtml
+var _buf = [];  _buf.push('Hello ', name, '!\n\
+<ul>\n');
+ for (var i = 0, n = items.length; i < n; i++) {
+ _buf.push(' <li>', escapeXml(items[i]), '</li>\n');
+ }
+ _buf.push('</ul>\n');
+_buf.join('')

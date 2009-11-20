@@ -1,0 +1,4 @@
+<?js var list = [1, 2, 3]; ?>
+<?js for (var i = 0, n = list.length; i < n; i++) { ?>
+<p>#{list[i]}</p>
+<?js } ?>

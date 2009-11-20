@@ -1,0 +1,17 @@
+<html>
+  <body>
+
+    <div id="sidemenu">
+<?js include('sidemenu.jshtml'); ?>
+    </div>
+
+    <div id="main-content">
+#{_content}
+    </div>
+
+    <div id="footer">
+<?js include('footer.jshtml'); ?>
+    </div>
+
+  </body>
+</table>

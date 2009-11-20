@@ -1,0 +1,2 @@
+$ jstenjin -c 'user:"Tenjin"' ex4.jshtml
+Hello Tenjin!

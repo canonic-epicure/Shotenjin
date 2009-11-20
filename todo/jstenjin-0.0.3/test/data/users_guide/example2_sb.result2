@@ -1,0 +1,11 @@
+$ jstenjin -s example2.jshtml
+var _buf = [];  var list = [1, 2, 3];
+ for (var i = 0, n = list.length; i < n; i++) {
+ _buf.push('<p>', list[i], '</p>\n');
+ }
+_buf.join('')
+$ jstenjin -sb example2.jshtml
+ var list = [1, 2, 3];
+ for (var i = 0, n = list.length; i < n; i++) {
+ _buf.push('<p>', list[i], '</p>\n');
+ }

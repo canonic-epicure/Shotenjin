@@ -1,0 +1,27 @@
+$ jstenjin -f contextdata.js example6.jshtml
+<html>
+  <body>
+
+    <div id="sidemenu">
+<ul>
+  <li><a href="/">Top</a></li>
+  <li><a href="/prod">Products</a></li>
+  <li><a href="/support">Support</a></li>
+</ul>
+    </div>
+
+    <div id="main-content">
+      <p>&lt;FOO&gt;</p>
+      <p>&amp;BAR</p>
+      <p>&quot;BAZ&quot;</p>
+    </div>
+
+    <div id="footer">
+<hr />
+<address>
+  <a href="mailto:webmaster@example.com">webmaster@example.com</a>
+</address>
+    </div>
+
+  </body>
+</table>

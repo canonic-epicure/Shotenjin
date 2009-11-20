@@ -1,0 +1,5 @@
+load('tenjin.js');
+var engine = new Tenjin.Engine();
+var context = { name:'World', items:['<AAA>', 'B&B', '"CCC"'] };
+var output = engine.render('ex.jshtml', context);
+print(output);

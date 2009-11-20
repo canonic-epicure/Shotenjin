@@ -1,0 +1,11 @@
+$ jstenjin --layout=ex8-baselayout.jshtml ex8-content.jshtml
+<html>
+  <body>
+    <h1>Changing Layout Template Test</h1>
+<div id="content">
+foo
+bar
+baz
+</div>
+  </body>
+</html>

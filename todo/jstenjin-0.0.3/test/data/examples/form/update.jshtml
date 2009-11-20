@@ -1,0 +1,4 @@
+<?js _context.title = 'Update user'; ?>
+<?js _context.label = 'Update'; ?>
+<?js _context.action = 'update.cgi'; ?>
+<?js include(':form'); ?>

@@ -1,0 +1,16 @@
+<?JS var states = { CA: "California", ?>
+<?JS                NY: "New York", ?>
+<?JS                FL: "Florida",  ?>
+<?JS                TX: "Texas",  ?>
+<?JS                HI: "Hawaii" }; ?>
+<?js var chk = {};  chk[params.state] = ' selected="selected"'; ?>
+<?JS var codes = []; ?>
+<?JS for (var code in states) { codes.push(code); } ?>
+<?JS codes.sort(); ?>
+<select name="state">
+  <option value="">-</option>
+<?JS for (var i = 0, n = codes.length; i < n; i++) { ?>
+<?JS     var code = codes[i]; ?>
+  <option value="#{{code}}"#{chk.#{{code}}||''}>${{states[code]}}</option>
+<?JS } ?>
+</select>

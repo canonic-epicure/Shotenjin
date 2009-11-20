@@ -1,0 +1,13 @@
+$ jstenjin --layout=layout7.jshtml content7.jshtml
+...
+<h1>Document Title</h1>
+
+<div id="main-content">
+<table>
+  ...content...
+</table>
+
+<div>
+
+<a href="/next/page">Next page</a>
+...

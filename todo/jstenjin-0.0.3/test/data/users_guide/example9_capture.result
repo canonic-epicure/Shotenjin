@@ -1,0 +1,26 @@
+$ jstenjin --layout=layout9.jshtml example9.jshtml
+<html lang="en">
+  <head>
+    <title>Capture Test</title>
+  </head>
+  <body>
+
+    <!-- HEADER -->
+    <h1>Capture Test</h1>
+    <!-- /HEADER -->
+
+    <!-- CONTENT -->
+    <ul>
+      <li>i = 0</li>
+      <li>i = 1</li>
+      <li>i = 2</li>
+    </ul>
+
+    <!-- /CONTENT -->
+
+    <!-- FOOTER -->
+    <div class="footer">copyright&copy; 2007 kuwata-lab.com</div>
+    <!-- /FOOTER -->
+
+  </body>
+</html>

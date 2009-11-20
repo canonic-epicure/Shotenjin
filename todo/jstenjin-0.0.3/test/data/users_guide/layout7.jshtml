@@ -1,0 +1,9 @@
+...
+<h1>${title}</h1>
+
+<div id="main-content">
+#{_content}
+<div>
+
+<a href="${url}">Next page</a>
+...

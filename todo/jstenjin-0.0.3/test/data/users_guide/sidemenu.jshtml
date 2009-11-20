@@ -1,0 +1,5 @@
+<ul>
+<?js for (var i = 0, n = menu.length; i < n; i++) { ?>
+  <li><a href="${menu[i].url}">${menu[i].name}</a></li>
+<?js } ?>
+</ul>

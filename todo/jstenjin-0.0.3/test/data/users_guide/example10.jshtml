@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<?js //@ARGS title, name ?>
+<h1>${title}</h1>
+<p>Hello ${name}!</p>

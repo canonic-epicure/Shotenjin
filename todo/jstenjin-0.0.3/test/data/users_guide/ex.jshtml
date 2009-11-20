@@ -1,0 +1,6 @@
+Hello #{name}!
+<ul>
+<?js for (var i = 0, n = items.length; i < n; i++) { ?>
+ <li>${items[i]}</li>
+<?js } ?>
+</ul>
