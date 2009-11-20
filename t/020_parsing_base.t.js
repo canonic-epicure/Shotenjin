@@ -1,6 +1,6 @@
 StartTest(function(t) {
     
-	t.plan(1)
+	t.plan(7)
     
     var async0 = t.beginAsync()
     
@@ -15,9 +15,14 @@ StartTest(function(t) {
         //======================================================================================================================================================================================================================================================
         t.diag('Instantiation')
         
-        var tenjin = new Shotenjin.Joosed()
+        Template('Test', {
+            
+            meta : Shotenjin.Joosed,
+            
+            template : ''
+        })
         
-        t.ok(tenjin, "'Shotenjin.Joosed' was succesfully instantiated")
+        t.ok(Test, "'Template' class was succesfully created")
         
 
         //======================================================================================================================================================================================================================================================
@@ -25,7 +30,7 @@ StartTest(function(t) {
         
         var res = []
         
-        tenjin.splitAndProcess(res, /tag((?:.|\n)+)tag/g, '00000\n0000tag1111\n1111tag\n0000tag1111tag\n', 
+        Test.meta.splitAndProcess(res, /tag((?:.|\n)+?)tag/g, '00000\n0000tag1111\n1111tag\n0000tag1111tag\n', 
             
             function (res, whitespace) { 
                 res.push('{' + whitespace + '}')
@@ -37,7 +42,11 @@ StartTest(function(t) {
         )
         
         t.ok(res[0] == '{00000\n0000}', 'Whitespace #1 was processed correctly')
-        
+        t.ok(res[1] == '[1111\n1111]', 'Match #1 was processed correctly')
+        t.ok(res[2] == '{\n0000}', 'Whitespace #2 was processed correctly')
+        t.ok(res[3] == '[1111]', 'Match #2 was processed correctly')
+        t.ok(res[4] == '{\n}', 'Trailing \\n was processed as whitespace')
+
         
         t.endAsync(async0)
     })
