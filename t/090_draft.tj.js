@@ -47,3 +47,10 @@ Class('My.Template', {
 })
 
 
+[%\
+    Joose.O.each(stash, function (value, name) {
+%]
+        [% "name: [" + name + "], value: [" + value + "]" %]
+[%\
+    })
+%]

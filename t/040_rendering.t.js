@@ -1,6 +1,6 @@
 StartTest(function(t) {
     
-	t.plan(7)
+    t.plan(1)
     
     var async0 = t.beginAsync()
     
@@ -16,7 +16,6 @@ StartTest(function(t) {
         t.diag('Instantiation')
         
         Template('Test', {
-            
             meta : Shotenjin.Joosed,
             
             template : ''
@@ -26,44 +25,64 @@ StartTest(function(t) {
         
 
         //======================================================================================================================================================================================================================================================
-        t.diag('Parsing - empty template')
+        t.diag('Rendering - empty template')
         
-        var parsed = Test.meta.parse('')
-        
-        t.ok(parsed == '(function (stash) { var _output = []; var _me = this; eval(this.meta.expandStashToVarsCode(stash)); ; return _output.join(""); })', 'Empty template was parsed correctly')
-
-
-        //======================================================================================================================================================================================================================================================
-        t.diag('Parsing - mostly whitespace template')
-        
-        parsed = Test.meta.parse("    foo  'bar'     \n   baz <tag/>   \n")
-        
-        t.ok(parsed == "(function (stash) { var _output = []; var _me = this; eval(this.meta.expandStashToVarsCode(stash)); _output.push('foo  \\\'bar\\\'\\nbaz <tag/>\\n', \"\"); ; return _output.join(\"\"); })", 'White space was handled correctly + escaping works')
+        t.ok(new Test == '', 'Empty template was rendered correctly #1')
+        t.ok(Test.my.render() == '', 'Empty template was rendered correctly #2')
         
         
         //======================================================================================================================================================================================================================================================
-        t.diag('Parsing - escaped expression')
+        t.diag('Rendering - mostly whitespace template')
         
-        parsed = Test.meta.parse("[% name[1] %]")
+        Test.meta.extend({
+            template : "    foo  'bar'     \n   baz <tag/>   \n"
+        })
         
-        t.ok(parsed == "(function (stash) { var _output = []; var _me = this; eval(this.meta.expandStashToVarsCode(stash)); _output.push(_me.escape( name[1] ), \"\"); ; return _output.join(\"\"); })", 'Escaped expression was parsed correctly')
+        t.ok(new Test == "foo  'bar'\nbaz <tag/>\n", 'Whitespace generally bypassed unmodified, except trimming')
+        
+        
+        //======================================================================================================================================================================================================================================================
+        t.diag('Rendering - escaped expression')
+        
+        Test.meta.extend({
+            template : "[% name[1] %]"
+        })
+        
+        t.ok(new Test({ name : [ 'tenjin', '<"shotenjin">'] }) == "&lt;&quot;shotenjin&quot;&gt;", 'Variables was correctly expanded from stash, whitespace was ignored, escaping occured')
+        
 
         
         //======================================================================================================================================================================================================================================================
-        t.diag('Parsing - unescaped expression')
-
-        parsed = Test.meta.parse("[%= name %]")
+        t.diag('Rendering - unescaped expression')
         
-        t.ok(parsed == "(function (stash) { var _output = []; var _me = this; eval(this.meta.expandStashToVarsCode(stash)); _output.push( name , \"\"); ; return _output.join(\"\"); })", 'Unescaped expression was parsed correctly')
+        Test.meta.extend({
+            template : "[%= name[1] %]"
+        })
+        
+        t.ok(new Test({ name : [ 'tenjin', '<"shotenjin">'] }) == '<"shotenjin">', 'Variables was correctly expanded from stash, whitespace was ignored, no escaping occured')
 
         
         //======================================================================================================================================================================================================================================================
         t.diag('Parsing - statements')
         
-        parsed = Test.meta.parse("[%\\ for(var i in stash) {\n this.someFunc(p1, p2)\n } %]")
+        Test.meta.extend({
+            template : 
+                '[%\\\n' + 
+                '    Joose.O.each(stash, function (value, name) {\n' + 
+                '%]\n' + 
+                '        [% "name: [" + name + "], value: [" + value + "]\\n" %]\n' + 
+                '[%\\\n' + 
+                '    })\n' + 
+                '%]\n'
+        })
         
-        t.ok(parsed == '(function (stash) { var _output = []; var _me = this; eval(this.meta.expandStashToVarsCode(stash));  for(var i in stash) {\nthis.someFunc(p1, p2)\n} ; return _output.join(""); })', 'Unescaped expression was parsed correctly')
+        var res = new Test({ name1 : 'value1', name2 : 'value2' })
         
+        console.log(res)
+        
+        t.ok(new Test({ name1 : 'value1', name2 : 'value2' }) == 'name: [name1], value: [value1]\nname: [name2], value: [value2]\n', 'Code-based template was processed correctly')
+
+
         t.endAsync(async0)
     })
     
