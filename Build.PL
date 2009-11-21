@@ -5,7 +5,7 @@ name            Shotenjin.Joosed
 version         0.01
 author          'Nickolay (SamuraiJack) Platonov <root@symbie.org>'
 
-abstract        'Shotenjin, ported to Joose and expanded'
+abstract        'Post-modern javascript templating system'
 license         mit
 
 

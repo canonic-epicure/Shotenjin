@@ -1,75 +1,47 @@
 Name
 ====
 
-JooseX.CPS - Some syntax sugar, enabling the [Continuation Passing Style](http://en.wikipedia.org/wiki/Continuation-passing_style) for Joose methods
-
-"Look ma - no callbacks!" )
+Shotenjin.Joosed - 'Post-modern javascript templating system'
 
 
 SYNOPSIS
 ========
 
-        Class("DataStore", {
-        
-            trait : JooseX.CPS,
-        
-            has: {
-                data    : { is: "rw" }
-            },
-            
-            
-            continued : {
-            
-                methods : {
-                
-                    save : function (url) {
-                    
-                        XHR.request({
-                            url      : url,
-                            data     : this.data,
-                        
-                            callback : this.getCONTINUE(),
-                            errback  : this.getTHROW()
-                        })
-                    }
-                }
-            }
+        Template('Table.Cell', {
+            template : '<td>[% text %]</td>'
         })
         
-        var store = new DataStore({
-            data : [ 1, 2, 3]
+        
+        Template('Table.Row', {
+            template : '<tr>[%\\ Joose.A.each(row, function (cell, index) { %][%= Table.Cell({ text : cell }) %][%\\})%]</tr>'
         })
         
-        UI.maskScreen("Please wait")
         
-        store.save('http://remote.site.com/webservice').THEN(function (response) {
-            
-            if (response.isOk) {           
-                alert('Saved correctly')
-                
-                this.CONTINUE()
-            } else
-                this.THROW('still got the error')
-            
-        }).CATCH(function (e) {
-        
-            alert('Error during saving: ' + e)
-            
-            this.CONTINUE()
-            
-        }).FINALLY(function () {
-        
-            UI.removeScreenMask()
+        Template('Table', {
+            template : '<table>[%\\ Joose.A.each(table, function (row, index) { %][%= Table.Row({ row : row }) %][%\\})%]</table>'
         })
+        
+
+        var tableData = [
+            [ '1',  '1', '2' ],
+            [ '3',  '5', '8' ],
+            [ '13','21','34' ]
+        ]
+        
+        new Table({ table : tableData })
+        
+        -equal-
+        
+        Table.my.render({ table : tableData })
+        
+        -equal-
+        
+        Table({ table : tableData })
 
 
 DESCRIPTION
 ===========
 
-`JooseX.CPS` is a trait for metaclasses, which enables "Continuation passing style" in Joose methods and method modifiers.
-
-`JooseX.CPS` allows you to define special "continued" methods and method modifiers, which forms the *asynchronous interface* of the class, 
-but behave just like ordinary methods in other aspects (can be inherited, composed from Role, etc).
 
 
 
