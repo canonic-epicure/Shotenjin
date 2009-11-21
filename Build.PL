@@ -10,6 +10,7 @@ license         mit
 
 
 requires        Joose                           3.01
+requires        JooseX.Meta.Lazy                0.01
 requires        JooseX.Namespace.Depended       0.01
 
 test_requires   Test.Run                        0.03

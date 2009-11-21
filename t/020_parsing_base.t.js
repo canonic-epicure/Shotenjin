@@ -16,9 +16,6 @@ StartTest(function(t) {
         t.diag('Instantiation')
         
         Template('Test', {
-            
-            meta : Shotenjin.Joosed,
-            
             template : ''
         })
         
