@@ -17,4 +17,4 @@ test_requires   Test.Run                        0.03
 
 docs_markup     mmd
 
-install_script  'script/shotenjin_embed.pl'
+script_files   'script/shotenjin_embed.pl'

@@ -1,0 +1,19 @@
+Build.PL
+inc/Module/Build/Functions.pm
+inc/Module/Build/Functions/DSL.pm
+inc/Module/Build/JSAN/Installable.pm
+inc/Module/JSAN.pm
+inc/Module/JSAN/DSL.pm
+lib/Shotenjin/Joosed.js
+lib/Shotenjin/Joosed/Template.js
+MANIFEST			This list of files
+README.md
+script/shotenjin_embed.pl
+t/010_helpers.t.js
+t/020_parsing_base.t.js
+t/030_parsing_basics.t.js
+t/040_rendering.t.js
+t/050_embedded_into_class.t.js
+t/060_integral.t.js
+t/061_helper.t.js
+t/index.html

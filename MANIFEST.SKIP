@@ -54,3 +54,4 @@
 ^\.externalToolBuilders\b
 ^\.gitignore\b
 ^TODO\b
+^todo\b
