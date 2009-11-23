@@ -257,7 +257,7 @@ Naturally, you can easily include such template into another template:
 Helper script
 -------------
 
-You may have noticed, that writing templates into JavaScript can be a cumbersome task, because you need to manally escape each special symbol, like `\\`
+You may have noticed, that writing templates into JavaScript can be a cumbersome task, because you need to manally escape each special symbol, like ` \ `
 To address this issue `Shotenjin.Joosed` comes with the helper script `shotenjin_embed.pl`. Its a simple shell script, which examine the passed file 
 (or files in directory) for the templates, embedded into JavaScript comments `/*tj ... tj*/`
 
@@ -370,7 +370,7 @@ String for closing tag. Default value is `%]`
 
  - `statementTagModifier`
  
-Modifier to specify the statement instruction. Default value is `\\`
+Modifier to specify the statement instruction. Default value is ` \ `
     
  - `expressionTagModifier`
  
