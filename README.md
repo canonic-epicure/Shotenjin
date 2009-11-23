@@ -20,6 +20,7 @@ Always classic:
         
 Post-modern:
 
+        
         Template('Table.Cell', {
             template : '<td>[% text %]</td>'
         })
@@ -57,8 +58,9 @@ Post-modern:
         
         var rendered = Table({ table : tableData })
         
-Less-noisy with embedding script:
+Less-noisy with the helper script:
 
+        
         Template('Chapter', {
             
             template : {
@@ -97,8 +99,8 @@ Less-noisy with embedding script:
 DESCRIPTION
 ===========
 
-Shotenjin.Joosed is a Yet Another JavaScript templating engine, based on Shotenjin by [Makoto Kuwata](http://www.kuwata-lab.com/)
-It was ported to Joose, along with some improvements.
+Shotenjin.Joosed is a Yet Another JavaScript Templating Engine, based on Shotenjin by [Makoto Kuwata](http://www.kuwata-lab.com/)
+Shotenjin was ported to Joose, along with some improvements.
 
 The main difference of Shotenjin from other templating solutions is that for the templating language it uses JavaScript itself. 
 Thus, Shotenjin templates are not *compiled* into JavaScript, they are only *parsed*. 
@@ -109,8 +111,7 @@ SYNTAX
 =======
 
 Shotenjin uses 3 types of templating instructions. Keep in mind, that all them, in the same time, are just ordinary JavaScript expressions,
-which are evaluted directly by the JavaScript engine of your choice, in the context of the templating function (see below for the 
-internal structure templating function). 
+which are evaluted directly by the JavaScript engine of your choice, in the context of the templating function (see below for its internal structure). 
 
 
 Escaped expressions
@@ -150,7 +151,8 @@ This instruction can be used to include the resulting content of another templat
 Control statements
 ------------------
 
-This type of instructions represent arbitrary JavaScript code, which generally should not return a value, but should modify the control flow of the templating function.
+This type of instructions represent arbitrary JavaScript code, which will be added to templating function unmodified. So, generally, 
+it shouldn't return a value, but should modify the control flow:
 
         [%\ for (var i = 0; i < persons.length; i++) { %]
                 <tr><td>[% persons[i].name %]</td></tr>
@@ -166,7 +168,7 @@ This type of instructions represent arbitrary JavaScript code, which generally s
 Multi-line code is ok:
 
         [%\
-            var sum = 0;
+            var sum = 0
             
             Joose.A.each(persons, function (person, index) {
                 sum += person.parameter
@@ -179,34 +181,95 @@ Memo - lambda function in Haskell.
 As you can see any code can be embedded into templating function, and you don't need to learn one more language to create a template.
 
 
-TEMPLATE STRUCTURE
-==================
+OOP
+===
 
-So we already saw, that Shotenjin template is basically a usual JavaScript function. Lets examine how it looks like.
+So we already saw, that Shotenjin template is a usual JavaScript code. In the same time, its an instance of `Shotenjin.Joosed.Template` class.
+During evalution of the template, `this` value is associated with this instance, so naturally all the methods of this class are available.
+
+
+Methods
+-------
+
+ - `this.render(Object stash)`
+ 
+Renders the template using data, passed in `stash`
+
+
+ - `this.capture(Function func)`
+ 
+This method captures the output, generated inside the passed function and return it. For example:
+
+    <b>[%\ this.capture(function () {
+            for (var i = 1; i <= 5; i++) { 
+    %]</b>
+                [% persons[i].name %]
+    [%\     }
+        })
+    %]
+ 
+
+
+ - this.escapeXml(String str)
+ 
+Escapes reserved HTML symbols in the `str` and returns modified string. 
+
+ - `this.echo(Object str1, Object str2)`
+ 
+Escapes and adds a each of passed arguments to the output of the *current context*. Usually a *context* is a template itself, however nested contexts may be derived (see `this.capture` and `this.wrap`)
+
+
+
 
 
 Empty template body
 -------------------
 
-In the simplest case of empty template body it looks like:
+In the simplest case of empty template body, the template function looks like:
 
     function (stash) { 
         this.startContext(); 
-        eval(this.expandStashToVarsCode(stash)); 
+        
+        eval(this.expandStashToVarsCode(stash));
+         
         return this.endContext(); 
     }
     
-For rendering, this function accepts a single argument, which should be an `Object` (in JavaScript meaning) and which is called *stash*.
+This function accepts a single argument, which should be an `Object` (in JavaScript meaning) and which is called *stash*.
     
 This statement
+
     eval(this.expandStashToVarsCode(stash));
     
-Will create a local variable for each key of the stash, so later, any key of the stash can accessed directly by its name.
+creates a local variable for each key of the stash, so later, any key of the stash can accessed directly by its name.
+
+Stash can be also accessed directly, if you prefer:
+
+    [% stash.name %]
+    
+    [% stash.person.name %]
 
 
-During evalution, `this` value is associated with the instance of `Shotenjin.Joosed.Template`,
-so naturally all the methods of this class are available.
+Ordinary text
+-------------
+    
+If the template contains an ordinary text, like:
 
+    foo 'bar'
+
+its translated as:
+    
+    function (stash) { 
+        this.startContext(); 
+        
+        eval(this.expandStashToVarsCode(stash));
+        
+        __contexts[0].output.push('foo  \'bar\'\\n', "");
+         
+        return this.endContext(); 
+    }
+
+    function (stash) { this.startContext(); eval(this.expandStashToVarsCode(stash)); ;  ; return this.endContext(); })
    
 
 
