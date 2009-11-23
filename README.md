@@ -180,15 +180,13 @@ Memo - lambda function in Haskell.
 
 As you can see any code can be embedded into templating function, and you don't need to learn one more language to create a template.
 
-
 USAGE
 =====
 
 Classic
 -------
 
-Shotenjin.Joosed can be used in "classic" way, in which you are responsible for instantiation and rendering. Hope, the following example
-makes that clear: 
+Shotenjin.Joosed can be used in "classic" way, in which you are responsible for instantiation and rendering: 
 
         var tenjin = new Shotenjin.Joosed.Template({
             sources : 'Hello [% world %]'
@@ -241,18 +239,11 @@ A simple example:
 The created `Table.Cell` class will be a singleton, which is instantiated internally. Its external constructor (`Table.Cell`) will be 
 binded to the `render` method, so, to render the template, call the constructor with the required data:
 
-        var tableData = [
-            [ '1',  '1', '2' ],
-            [ '3',  '5', '8' ],
-            [ '13','21','34' ]
-        ]
-        
-        
-        var rendered = new Table({ table : tableData })
+        var rendered = new Table.Cell({ text : 'some text' })
         
         // or just
         
-        var rendered = Table({ table : tableData })
+        var rendered = Table.Cell({ text : 'some text' })
 
 Naturally, you can easily include such template into another template: 
 
@@ -266,7 +257,7 @@ Naturally, you can easily include such template into another template:
 Helper script
 -------------
 
-You may have noticed, that writing templates into JavaScript can be a cumbersome task, because you need to manally escape each special symbol, like '\'
+You may have noticed, that writing templates into JavaScript can be a cumbersome task, because you need to manally escape each special symbol, like `\\`
 To address this issue `Shotenjin.Joosed` comes with the helper script `shotenjin_embed.pl`. Its a simple shell script, which examine the passed file 
 (or files in directory) for the templates, embedded into JavaScript comments `/*tj ... tj*/`
 
@@ -285,7 +276,7 @@ To address this issue `Shotenjin.Joosed` comes with the helper script `shotenjin
             }
         })
 
-Once found, script append such comments with the escaped version:
+Once found, script append such comments with the escaped version of the template:
 
         Template('Book', {
             
@@ -305,9 +296,10 @@ Once found, script append such comments with the escaped version:
             }
         })
 
-Script is supposed to be run during your project's build phase. All modern IDE will allow you to automatically run the script, when one of the files in the project was modified.
+Script is supposed to be run during your project's build phase. All modern IDE will allow you to automatically run the script, when one of the files in the project was modified,
+so spend some time to examine your IDE's documentation for that.
 
-Script accepts a single command-line argument, which should be either the path to file to examine, or the directory, which will be scanned for all '*.tj.js' files.  
+Script accepts a single command-line argument, which should be either the path to file to examine, or the directory, which will be scanned for all `*.tj.js` files.  
 
 
 API
@@ -318,6 +310,7 @@ During evalution of the template, `this` value is associated with the instance o
 
 Methods
 -------
+
 
  - `this.render(Object stash)`
  
@@ -343,12 +336,17 @@ A *new context* is derived for the passed function and the output of the outer t
 
  - `this.echo(Object str1, Object str2, ...)`
  
-Escapes and adds a each of passed arguments to the output of the *current context*. Usually a *context* is a template itself, however nested contexts may be derived (see `this.capture` and `this.wrap`)
+Escapes and adds each of passed arguments to the output of the *current context*. Usually a *context* is a template itself, however nested contexts may be derived (see `this.capture` and `this.wrap`)
+
+
+ - `this.echoRaw(Object str1, Object str2, ...)`
+ 
+Unescaped version of `echo`.
 
 
  - `this.wrap(Class|Shotenjin.Joosed.Template template, Object stash, Function func)`
  
-First captures the content generated into the passed `func`, then assign it to the `content` key of the passed `stash` object and renders the wrapping template.
+First captures the content generated into the passed `func`, then assign it to the `content` key of the passed `stash` object and renders the wrapping template with it.
 Wrapping `template` can be passed as the instance of `Shotenjin.Joosed.Template` or as Class.
 
 
@@ -372,11 +370,29 @@ String for closing tag. Default value is `%]`
 
  - `statementTagModifier`
  
-Modifier to specify the statement instruction. Default value is `\`
+Modifier to specify the statement instruction. Default value is `\\`
     
  - `expressionTagModifier`
  
 Modifier to specify the unescaped expression. Default value is `=`
+
+
+WHITESPACE HANDLING
+===================
+
+The rules for whitespace processing:
+
+ - First of all, leading and trailing whitespace on each line is trimmed.
+
+ - If the control flow statement is followed with the newline, that newline will be "ate" and don't included into template's output. 
+
+ - All other whitespace (including newlines after expressions) is preserved.
+
+
+TEMPLATE STRUCTURE
+==================
+
+You may skip this section for the first-time reading.
 
 
 Empty template body
@@ -384,27 +400,27 @@ Empty template body
 
 In the simplest case of empty template body, the template function looks like:
 
-    function (stash) { 
-        this.startContext(); 
-        
-        eval(this.expandStashToVarsCode(stash));
-         
-        return this.endContext(); 
-    }
+        function (stash) { 
+            this.startContext(); 
+            
+            eval(this.expandStashToVarsCode(stash));
+             
+            return this.endContext(); 
+        }
     
 This function accepts a single argument, which should be an `Object` (in JavaScript meaning) and which is called *stash*.
     
 This statement
 
-    eval(this.expandStashToVarsCode(stash));
+        eval(this.expandStashToVarsCode(stash));
     
 creates a local variable for each key of the stash, so later, any key of the stash can accessed directly by its name.
 
 Stash can be also accessed directly, if you prefer:
 
-    [% stash.name %]
-    
-    [% stash.person.name %]
+        [% stash.name %]
+        
+        [% stash.person.name %]
 
 
 Ordinary text
@@ -412,22 +428,93 @@ Ordinary text
     
 If the template contains an ordinary text, like:
 
-    foo 'bar'
+        foo 'bar'
 
 its translated as:
     
-    function (stash) { 
-        this.startContext(); 
-        
-        eval(this.expandStashToVarsCode(stash));
-        
-        __contexts[0].output.push('foo  \'bar\'\\n', "");
-         
-        return this.endContext(); 
-    }
+        function (stash) { 
+            this.startContext(); 
+            
+            eval(this.expandStashToVarsCode(stash));
+            
+            __contexts[0].output.push('foo  \'bar\'\\n', "");
+             
+            return this.endContext(); 
+        }
 
-    function (stash) { this.startContext(); eval(this.expandStashToVarsCode(stash)); ;  ; return this.endContext(); })
+
+Escaped expression
+------------------
    
+        [% name[1] %]
+    
+Corresponds to:
+        
+        function (stash) {
+            this.startContext();
+            
+            eval(this.expandStashToVarsCode(stash));
+            
+            __contexts[0].output.push(__me.escapeXml( name[1] ), "");
+            
+            return this.endContext();
+        }
+    
+Note:
+ - Whitespace immediately after opening tag / before closing tag is preserved.
+ - A semicolon *is* added after expression.
+
+
+Unescaped expression
+------------------
+   
+        [%= name[1] %]
+        
+Is just passed through:
+        
+        function (stash) {
+            this.startContext();
+            
+            eval(this.expandStashToVarsCode(stash));
+            
+            __contexts[0].output.push( name[1] , "");
+            
+            return this.endContext();
+        }
+    
+
+Statements
+----------
+
+        [%\ 
+            for(var i in stash) {
+                this.someFunc(p1, p2) 
+            } 
+        %]
+
+Is passed through *completely* unmodified. *No semi-colons* are appended.
+            
+        function (stash) {
+            this.startContext();
+            eval(this.expandStashToVarsCode(stash));
+            for(var i in stash) {
+                this.someFunc(p1, p2) 
+            } 
+            return this.endContext();
+        }    
+
+This means you need to care about any needed punctuation (as with usual code).
+For example this template  
+
+        [%\ for(var i in stash) { %][%\ this.echo('123') %][%\ this.echo('123') } %]
+        
+will produce        
+        
+        missing ; before statement
+
+error. To fix it, add punctuation:
+
+        [%\ for(var i in stash) { %][%\ this.echo('123'); %][%\ this.echo('123') } %]
 
 
 GETTING HELP

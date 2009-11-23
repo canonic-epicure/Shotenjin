@@ -46,7 +46,8 @@ sub process_file {
         
         my $escaped_template    = $template;
         
-        $escaped_template       =~ s/^\s*(.*)\s*$/$1/mg;
+        $escaped_template       =~ s/^\s*(.*?)\s*$/$1/mg;
+#        $escaped_template       =~ s/^[\t\f ]*(.*?)[\t\f ]*$/$1/mg;
         $escaped_template       =~ s!\\!\\\\!g;
         $escaped_template       =~ s/\r?\n/\\n/g;
         $escaped_template       =~ s/'/\\'/g;

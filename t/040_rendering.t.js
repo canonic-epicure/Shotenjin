@@ -30,28 +30,28 @@ StartTest(function(t) {
         //======================================================================================================================================================================================================================================================
         t.diag('Rendering - mostly whitespace template')
         
-        tenjin.setSources("    foo  'bar'     \n   baz <tag/>   \n")
+        tenjin.setSources("    foo  'bar'     \n\n   baz <tag/>   \n\n")
         
         t.ok(!tenjin.isCompiled, "Template isn't compiled after changing source")
         
         
-        t.ok(tenjin.render() == "foo  'bar'\nbaz <tag/>\n", 'Whitespace generally bypassed unmodified, except trimming')
+        t.ok(tenjin.render() == "foo  'bar'\n\nbaz <tag/>\n\n", 'Whitespace generally bypassed unmodified, except trimming')
 
         
         //======================================================================================================================================================================================================================================================
         t.diag('Rendering - escaped expression')
         
-        tenjin.setSources("[% name[1] %]")
+        tenjin.setSources("[% name[1] %]\n")
         
-        t.ok(tenjin.render({ name : [ 'tenjin', '<"shotenjin">'] }) == "&lt;&quot;shotenjin&quot;&gt;", 'Variables was correctly expanded from stash, whitespace was ignored, escaping occured')
+        t.ok(tenjin.render({ name : [ 'tenjin', '<"shotenjin">'] }) == "&lt;&quot;shotenjin&quot;&gt;\n", 'Variables was correctly expanded from stash, whitespace was ignored, escaping occured')
 
         
         //======================================================================================================================================================================================================================================================
         t.diag('Rendering - unescaped expression')
         
-        tenjin.setSources("[%= name[1] %]")
+        tenjin.setSources("[%= name[1] %]\n")
         
-        t.ok(tenjin.render({ name : [ 'tenjin', '<"shotenjin">'] }) == '<"shotenjin">', 'Variables was correctly expanded from stash, whitespace was ignored, no escaping occured')
+        t.ok(tenjin.render({ name : [ 'tenjin', '<"shotenjin">'] }) == '<"shotenjin">\n', 'Variables was correctly expanded from stash, whitespace was ignored, no escaping occured')
 
         
         //======================================================================================================================================================================================================================================================
@@ -67,7 +67,7 @@ StartTest(function(t) {
             '%]\n'
         )
         
-        t.ok(tenjin.render({ name1 : 'value1', name2 : 'value2' }) == 'name: [name1], value: [value1]\nname: [name2], value: [value2]\n', 'Code-based template was processed correctly')
+        t.ok(tenjin.render({ name1 : 'value1', name2 : 'value2' }) == 'name: [name1], value: [value1]\nname: [name2], value: [value2]\n', 'Code-based template was processed correctly, newline after statemets ate')
 
 
         t.endAsync(async0)
