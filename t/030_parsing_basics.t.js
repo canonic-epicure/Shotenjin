@@ -22,6 +22,7 @@ StartTest(function(t) {
         
         t.ok(parsed == 'var __a = (function (stash) { this.startContext(); var __contexts = this.contexts; var __me = this; eval(this.expandStashToVarsCode(stash)); ; return this.endContext(); }); __a', 'Empty template was parsed correctly')
 
+//        debugger
         
         //======================================================================================================================================================================================================================================================
         t.diag('Parsing - mostly whitespace template')
