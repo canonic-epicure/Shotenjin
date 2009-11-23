@@ -1,21 +1,30 @@
 StartTest(function(t) {
     
-	t.plan(4)
+	t.plan(5)
     
     var async0 = t.beginAsync()
     
-    use('Shotenjin.Joosed', function () {
+    use('Shotenjin.Joosed.Template', function () {
         
         //======================================================================================================================================================================================================================================================
         t.diag('Sanity')
         
-        t.ok(Shotenjin.Joosed.my, "Shotenjin.Joosed.my is here")
+        t.ok(Shotenjin.Joosed.Template, "Shotenjin.Joosed.Template is here")
 
+        
+        
+        //======================================================================================================================================================================================================================================================
+        t.diag('Instantiation')
+        
+        var tenjin = new Shotenjin.Joosed.Template()
+        
+        t.ok(tenjin, "'Shotenjin.Joosed.Template' class was succesfully created")
+
+        
         
         //======================================================================================================================================================================================================================================================
         t.diag('Helper functions')
         
-        var tenjin = Shotenjin.Joosed.my
         
         t.ok(tenjin.escapeXml('<xml><"more"></xml>') == '&lt;xml&gt;&lt;&quot;more&quot;&gt;&lt;/xml&gt;', 'XML escaping works')
         

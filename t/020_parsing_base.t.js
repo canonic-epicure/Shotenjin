@@ -1,33 +1,25 @@
 StartTest(function(t) {
     
-	t.plan(7)
+	t.plan(6)
     
     var async0 = t.beginAsync()
     
-    use('Shotenjin.Joosed', function () {
+    use('Shotenjin.Joosed.Template', function () {
         
         //======================================================================================================================================================================================================================================================
         t.diag('Sanity')
         
-        t.ok(Shotenjin.Joosed.my, "Shotenjin.Joosed.my is here")
+        t.ok(Shotenjin.Joosed.Template, "Shotenjin.Joosed.Template is here")
         
         
-        //======================================================================================================================================================================================================================================================
-        t.diag('Instantiation')
-        
-        Template('Test', {
-            template : ''
-        })
-        
-        t.ok(Test, "'Template' class was succesfully created")
-        
+        var tenjin = new Shotenjin.Joosed.Template()        
 
         //======================================================================================================================================================================================================================================================
         t.diag('Parsing - splitAndProcess')
         
         var res = []
         
-        Test.meta.splitAndProcess(res, /tag((?:.|\n)+?)tag/g, '00000\n0000tag1111\n1111tag\n0000tag1111tag\n', 
+        tenjin.splitAndProcess(res, /tag((?:.|\n)+?)tag/g, '00000\n0000tag1111\n1111tag\n0000tag1111tag\n', 
             
             function (res, whitespace) { 
                 res.push('{' + whitespace + '}')

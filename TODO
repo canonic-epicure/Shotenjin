@@ -1,6 +1,7 @@
 TASKS
 =====
 
+- Optimize away trailing empty string "" if no expression were emitted 
 
 
 DONE
