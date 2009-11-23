@@ -20,7 +20,7 @@ Always classic:
         
 Post-modern:
 
-        
+          
         Template('Table.Cell', {
             template : '<td>[% text %]</td>'
         })
@@ -60,7 +60,7 @@ Post-modern:
         
 Less-noisy with the helper script:
 
-        
+          
         Template('Chapter', {
             
             template : {
@@ -181,6 +181,49 @@ Memo - lambda function in Haskell.
 As you can see any code can be embedded into templating function, and you don't need to learn one more language to create a template.
 
 
+USAGE
+=====
+
+Classic
+-------
+
+Shotenjin.Joosed can be used in "classic" way, in which you are responsible for instantiation and rendering. The following example
+make that clear: 
+
+        var tenjin = new Shotenjin.Joosed.Template({
+            sources : 'Hello [% world %]'
+        })
+        
+        var rendered = tenjin.render({
+            world : 'Shotenjin'
+        })
+
+
+Post-modern
+-----------
+
+In the "post-modern" usage scenario, the template instance is embedded into Joose class:
+
+        Class('My.Template', {
+            meta : 'Shotenjin.Joosed',
+            
+            template : '<td>[% text %]</td>'
+        })
+
+Additional helper `Template` is introduced to simplify the declaration:
+
+        Template('My.Template', {
+        
+            template : '<td>[% text %]</td>'
+        })
+        
+
+
+
+Helper script
+-------------
+
+
 OOP
 ===
 
@@ -198,27 +241,35 @@ Renders the template using data, passed in `stash`
 
  - `this.capture(Function func)`
  
-This method captures the output, generated inside the passed function and return it. For example:
+Captures the output, generated inside the passed function and returns it. For example:
 
-    <b>[%\ this.capture(function () {
+    [%\ var names = this.capture(function () {
             for (var i = 1; i <= 5; i++) { 
-    %]</b>
+    %]
                 [% persons[i].name %]
     [%\     }
         })
     %]
+    
+    [% names %]
  
+A *new context* is derived for the passed function and the output of the outer template isn't modified. 
 
 
- - this.escapeXml(String str)
- 
-Escapes reserved HTML symbols in the `str` and returns modified string. 
-
- - `this.echo(Object str1, Object str2)`
+ - `this.echo(Object str1, Object str2, ...)`
  
 Escapes and adds a each of passed arguments to the output of the *current context*. Usually a *context* is a template itself, however nested contexts may be derived (see `this.capture` and `this.wrap`)
 
 
+ - `this.wrap(Class|Shotenjin.Joosed.Template template, Object stash, Function func)`
+ 
+First captures the content generated into the passed `func`, then assign it to the `content` key of the passed `stash` object and renders the wrapping template.
+Wrapping `template` can be passed as the instance of `Shotenjin.Joosed.Template` or as Class.
+
+
+ - `this.escapeXml(String str)`
+ 
+Escapes reserved HTML symbols in the `str` and returns modified string. 
 
 
 
