@@ -16,3 +16,5 @@ requires        JooseX.Namespace.Depended       0.01
 test_requires   Test.Run                        0.03
 
 docs_markup     mmd
+
+install_script  'script/shotenjin_embed.pl'
