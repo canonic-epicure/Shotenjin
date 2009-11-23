@@ -70,7 +70,7 @@ StartTest(function(t) {
                 '[%\\\n' + 
                 '    Joose.O.each(stash, function (value, name) {\n' + 
                 '%]\n' + 
-                '        [% "name: [" + name + "], value: [" + value + "]\\n" %]\n' + 
+                '        [% "name: [" + name + "], value: [" + value + "]\\n" %]' + 
                 '[%\\\n' + 
                 '    })\n' + 
                 '%]\n'

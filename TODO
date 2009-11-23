@@ -4,5 +4,14 @@ TASKS
 - Optimize away trailing empty string "" if no expression were emitted 
 
 
+
+- Implement wrapping
+
+- Implement transport for JX.N.D via SpiderMonkey&JavaScript and add already compiled&beatified template to constructor
+
+
+
 DONE
 ====
+
+- Implement capturing

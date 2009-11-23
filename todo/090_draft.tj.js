@@ -39,22 +39,3 @@ Class('My.Template', {
     }
 
 })
-
-var __a = (function (stash) {
-    var _output = [];
-    var _me = this;
-    eval(this.expandStashToVarsCode(stash));
-    nvar pos = 1
-    Joose.O.each(stash, function (value, name) {
-        if (pos % 2) {;
-            _output.push(_me.escapeXml("name: [" + name + "], value: [" + value + "]"), "");
-            n
-        } else {;
-            _output.push(_me.escapeXml("value: [" + value + "], name: [" + name + "]"), "");
-            n
-        }
-        pos++
-    });
-    return _output.join("");
-});
-__a
