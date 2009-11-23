@@ -1,6 +1,6 @@
 StartTest(function(t) {
     
-    t.plan(6)
+    t.plan(9)
     
     var async0 = t.beginAsync()
     
@@ -17,15 +17,23 @@ StartTest(function(t) {
         //======================================================================================================================================================================================================================================================
         t.diag('Rendering - empty template')
         
+        t.ok(!tenjin.isCompiled, "Template isn't compiled yet")
+        
         tenjin.setSources('')
         
+        
         t.ok(tenjin.render() == '', 'Empty template was rendered correctly')
+        
+        t.ok(tenjin.isCompiled, "Template was compiled yet")
         
         
         //======================================================================================================================================================================================================================================================
         t.diag('Rendering - mostly whitespace template')
         
         tenjin.setSources("    foo  'bar'     \n   baz <tag/>   \n")
+        
+        t.ok(!tenjin.isCompiled, "Template isn't compiled after changing source")
+        
         
         t.ok(tenjin.render() == "foo  'bar'\nbaz <tag/>\n", 'Whitespace generally bypassed unmodified, except trimming')
 

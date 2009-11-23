@@ -7,6 +7,19 @@ Shotenjin.Joosed - 'Post-modern javascript templating system'
 SYNOPSIS
 ========
 
+Always classic:
+
+        var tenjin = new Shotenjin.Joosed.Template({
+            sources : 'Hello [% world %]'
+        })
+        
+        var rendered = tenjin.render({
+            world : 'world'
+        })
+        
+        
+Post-modern:
+
         Template('Table.Cell', {
             template : '<td>[% text %]</td>'
         })
@@ -18,7 +31,12 @@ SYNOPSIS
         
         
         Template('Table', {
-            template : '<table>[%\\ Joose.A.each(table, function (row, index) { %][%= Table.Row({ row : row }) %][%\\})%]</table>'
+            template : '<table>[%\\ Joose.A.each(table, function (row, index) { %][%= Table.Row({ row : this.helper(row) }) %][%\\})%]</table>',
+            
+            methods : {
+            
+                helper : function () { ... }
+            }
         })
         
 
@@ -28,13 +46,10 @@ SYNOPSIS
             [ '13','21','34' ]
         ]
         
+        
         new Table({ table : tableData })
         
-        -equal-
-        
-        Table.my.render({ table : tableData })
-        
-        -equal-
+-or-
         
         Table({ table : tableData })
 
