@@ -1,7 +1,9 @@
+/**
+
 Name
 ====
 
-Shotenjin.Joosed - Post-modern JavaScript templating engine
+Shotenjin.Joosed - Post-modern JavaScript templating system
 
 
 SYNOPSIS
@@ -101,113 +103,7 @@ Shotenjin.Joosed is a Yet Another JavaScript templating engine, based on Shotenj
 It was ported to Joose, along with some improvements.
 
 The main difference of Shotenjin from other templating solutions is that for the templating language it uses JavaScript itself. 
-Thus, Shotenjin templates are not *compiled* into JavaScript, they are only *parsed*. 
-
-   
-
-SYNTAX
-=======
-
-Shotenjin uses 3 types of templating instructions. Keep in mind, that all them, in the same time, are just ordinary JavaScript expressions,
-which are evaluted directly by the JavaScript engine of your choice, in the context of the templating function (see below for the 
-internal structure templating function). 
-
-
-Escaped expressions
--------------------
-
-Such expression are represented with the following construct
-
-        [% name %]
-        
-        [% name + ' ' + surname %]
-        
-        [% Digest.MD5.my.md5_hex(response) %]
-
-The value of the expression will be escaped before adding to template, according to this table:
-
-        '&'     : '&amp;'
-        '<'     : '&lt;' 
-        '>'     : '&gt;' 
-        '"'     : '&quot;'
-    
-
-Unescaped expressions
----------------------
-
-Such expression are represented with the following construct
-
-        [%= person.name %]
-        
-        [%= document.body.innerHTML %]
-
-Memo - passed-through exactly (equally) as calculated
-
-The value of the expression will *not* be escaped before adding to template. Thus, this expressions can be used to generate HTML markup.  
-This instruction can be used to include the resulting content of another template for example, (see example with `Table` in Synopsys above)
-
-
-Control statements
-------------------
-
-This type of instructions represent arbitrary JavaScript code, which generally should not return a value, but should modify the control flow of the templating function.
-
-        [%\ for (var i = 0; i < persons.length; i++) { %]
-                <tr><td>[% persons[i].name %]</td></tr>
-        [%\ } %]        
-                
-        
-        [%\ if (a == b) { %]
-                <tr><td>[% person.name %]</td></tr>
-        [%\ } else { %]        
-                <tr><td>[% person.surname %]</td></tr>
-        [%\ } %]
-
-Multi-line code is ok:
-
-        [%\
-            var sum = 0;
-            
-            Joose.A.each(persons, function (person, index) {
-                sum += person.parameter
-            })
-        %]
-        Totally: [% sum %]
-        
-Memo - lambda function in Haskell.
-
-As you can see any code can be embedded into templating function, and you don't need to learn one more language to create a template.
-
-
-TEMPLATE STRUCTURE
-==================
-
-So we already saw, that Shotenjin template is basically a usual JavaScript function. Lets examine how it looks like.
-
-
-Empty template body
--------------------
-
-In the simplest case of empty template body it looks like:
-
-    function (stash) { 
-        this.startContext(); 
-        eval(this.expandStashToVarsCode(stash)); 
-        return this.endContext(); 
-    }
-    
-For rendering, this function accepts a single argument, which should be an `Object` (in JavaScript meaning) and which is called *stash*.
-    
-This statement
-    eval(this.expandStashToVarsCode(stash));
-    
-Will create a local variable for each key of the stash, so later, any key of the stash can accessed directly by its name.
-
-
-During evalution, `this` value is associated with the instance of `Shotenjin.Joosed.Template`,
-so naturally all the methods of this class are available.
-
-   
+Thus, Shotenjin templates are not *compiled* into JavaScript, they are only *parsed*. Shotenjin   
 
 
 GETTING HELP
@@ -271,3 +167,5 @@ Redistribution and use in source and binary forms, with or without modification,
 * Neither the name of Nickolay Platonov nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission. 
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+
+*/
