@@ -9,11 +9,11 @@ use Path::Class;
 my @files;
 
 if (-d $ARGV[0]) {
-    @files = File::Find::Rule->file->name('*.js')->in($ARGV[0]);    
+    @files = File::Find::Rule->file->name('*.js')->in($ARGV[0]);
 } elsif (-e $ARGV[0]) {
     @files = ( $ARGV[0] )
 } else {
-    die "Can't find input files to process, specify it as 1st argument\n(either single file or directory to scan for *.tj.js)\n"
+    die "Can't find input files to process, specify it as 1st argument\n(either single file or directory to scan for *.js)\n"
 }
 
 
@@ -59,6 +59,8 @@ sub process_file {
         my $fh = file($file)->openw();
         print $fh $content_copy;
         $fh->close();
+        
+        print "UPDATED: $file\n";
     }
 }
 
