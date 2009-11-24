@@ -9,7 +9,7 @@ use Path::Class;
 my @files;
 
 if (-d $ARGV[0]) {
-    @files = File::Find::Rule->file->name('*.tj.js')->in($ARGV[0]);    
+    @files = File::Find::Rule->file->name('*.js')->in($ARGV[0]);    
 } elsif (-e $ARGV[0]) {
     @files = ( $ARGV[0] )
 } else {

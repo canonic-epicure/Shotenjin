@@ -299,7 +299,7 @@ Once found, script append such comments with the escaped version of the template
 Script is supposed to be run during your project's build phase. All modern IDE will allow you to automatically run the script, when one of the files in the project was modified,
 so spend some time to examine your IDE's documentation for that.
 
-Script accepts a single command-line argument, which should be either the path to file to examine, or the directory, which will be scanned for all `*.tj.js` files.  
+Script accepts a single command-line argument, which should be either the path to file to examine, or the directory, which will be scanned for all `*.js` files.  
 
 
 API
