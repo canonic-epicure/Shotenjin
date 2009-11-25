@@ -525,6 +525,13 @@ This extension is supported via github issues tracker: [http://github.com/Samura
 For general Joose questions you can also visit #joose on irc.freenode.org. 
 
 
+ACKNOWLEDGEMENTS
+================
+
+Many thanks to Makoto Kuwata for his Shotenjin implementation, on which this engine is based. 
+
+
+
 SEE ALSO
 ========
 
