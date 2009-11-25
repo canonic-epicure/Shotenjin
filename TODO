@@ -2,16 +2,16 @@ TASKS
 =====
 
 - Optimize away trailing empty string "" if no expression were emitted 
+- Optimize away 'output' in __context[0].output? Seems we don't replicate stash anyway..
 
 
+- Implement transport for JX.N.D via SpiderMonkey&JavaScript and add already compiled&beautified template to constructor
 
-- Implement wrapping
-
-- Implement transport for JX.N.D via SpiderMonkey&JavaScript and add already compiled&beatified template to constructor
-
+- Add ability for helper script to extract template body from external file
 
 
 DONE
 ====
 
 - Implement capturing
+- Implement wrapping
