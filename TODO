@@ -10,6 +10,25 @@ TASKS
 - Add ability for helper script to extract template body from external file
 
 
+- map embedded template instance to 'my'?
+
+- treat templates as methods and implement a special type of methods, which will allow that (needs to be wrapped with 'echoRaw'):
+
+Template('Table', {
+
+    templates : {
+    
+        cell : {
+            sources : '...'
+        },
+        
+        row : {
+            sources : '[%= this.cell() %]'
+        },
+        
+    }
+})
+
 DONE
 ====
 
