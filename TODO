@@ -7,7 +7,6 @@ TASKS
 
 - Implement transport for JX.N.D via SpiderMonkey&JavaScript and add already compiled&beautified template to constructor
 
-- Add ability for helper script to extract template body from external file
 
 
 - map embedded template instance to 'my'?
@@ -42,3 +41,4 @@ DONE
 
 - Implement capturing
 - Implement wrapping
+- Add ability for helper script to extract template body from external file

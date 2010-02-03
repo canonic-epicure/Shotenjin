@@ -43,6 +43,7 @@ sub process_file {
         my $whitespace          = $2;
         
         my $template            = $3;
+        my $escaped_template;
         
         if ($template =~ m/^:(.+?)$/m) {
             my $from_file_raw = $1;
@@ -52,19 +53,20 @@ sub process_file {
             if (-e $from_file) {
                 $template = $from_file->slurp;
                 
-                $DB::single = 1;
-                
-                $template =~ s/^(.*)$/$whitespace$1/mg;
+                $template =~ s/^(.*)$/$whitespace    $1/mg;
                 
                 $template =~ s/(\r?\n)$/$1$whitespace/s;
             } else {
-                $template = "${whitespace}File [$from_file] not found\n$whitespace";
+                $template = "${whitespace}    File [$from_file] not found\n$whitespace";
             }
             
+            $escaped_template    = $template;
+            
             $template = ':' . $from_file_raw . "\n" . $template;
+            
+        } else {
+            $escaped_template    = $template;
         }
-        
-        my $escaped_template    = $template;
         
         $escaped_template       =~ s/^\s*(.*?)\s*$/$1/mg;
 #        $escaped_template       =~ s/^[\t\f ]*(.*?)[\t\f ]*$/$1/mg;
