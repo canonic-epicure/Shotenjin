@@ -44,6 +44,26 @@ sub process_file {
         
         my $template            = $3;
         
+        if ($template =~ m/^:(.+?)$/m) {
+            my $from_file_raw = $1;
+            
+            my $from_file = file($1)->absolute(file($file)->dir);
+            
+            if (-e $from_file) {
+                $template = $from_file->slurp;
+                
+                $DB::single = 1;
+                
+                $template =~ s/^(.*)$/$whitespace$1/mg;
+                
+                $template =~ s/(\r?\n)$/$1$whitespace/s;
+            } else {
+                $template = "${whitespace}File [$from_file] not found\n$whitespace";
+            }
+            
+            $template = ':' . $from_file_raw . "\n" . $template;
+        }
+        
         my $escaped_template    = $template;
         
         $escaped_template       =~ s/^\s*(.*?)\s*$/$1/mg;

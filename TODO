@@ -14,7 +14,15 @@ TASKS
 
 - treat templates as methods and implement a special type of methods, which will allow that (needs to be wrapped with 'echoRaw'):
 
-Template('Table', {
+
+Class('Table', {
+
+    trait : 'Shotenjin.Joosed.Methods',
+
+    methods : {
+        usualMethod : function () {}
+    },
+
 
     templates : {
     
