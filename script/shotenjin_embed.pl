@@ -1,9 +1,21 @@
 #!/usr/bin/perl
 
-
 use strict;
+use warnings;
+
+
 use File::Find::Rule;
 use Path::Class;
+use Getopt::LL::Simple qw(
+    --keep_whitespace
+    --kw
+    --add_indentation
+    --ai
+);
+
+
+my $keep_whitespace = $ARGV{'--keep_whitespace'} || $ARGV{'--kw'};
+my $add_indentation = !$keep_whitespace && ( $ARGV{'--add_indentation'} || $ARGV{'--ai'} );
 
 
 my @files;
@@ -53,9 +65,11 @@ sub process_file {
             if (-e $from_file) {
                 $template = $from_file->slurp;
                 
-                $template =~ s/^(.*)$/$whitespace    $1/mg;
+                if ($add_indentation) {
+                    $template =~ s/^(.*)$/$whitespace    $1/mg; 
+                    $template =~ s/(\r?\n)$/$1$whitespace/s;
+                }
                 
-                $template =~ s/(\r?\n)$/$1$whitespace/s;
             } else {
                 $template = "${whitespace}    File [$from_file] not found\n$whitespace";
             }
@@ -68,8 +82,11 @@ sub process_file {
             $escaped_template    = $template;
         }
         
-        $escaped_template       =~ s/^\s*(.*?)\s*$/$1/mg;
+        # removing leading and trailing whitespace
+        $escaped_template       =~ s/^\s*(.*?)\s*$/$1/mg unless $keep_whitespace;
 #        $escaped_template       =~ s/^[\t\f ]*(.*?)[\t\f ]*$/$1/mg;
+        
+        # escaping \, new-lines and '
         $escaped_template       =~ s!\\!\\\\!g;
         $escaped_template       =~ s/\r?\n/\\n/g;
         $escaped_template       =~ s/'/\\'/g;
