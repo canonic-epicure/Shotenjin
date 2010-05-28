@@ -1,8 +1,8 @@
 {
    "resources" : {
-      "license" : "http://www.opensource.org/licenses/mit-license.php"
+      "license" : "http://opensource.org/licenses/mit-license.php"
    },
-   "generated_by" : "Module::Build version 0.3601",
+   "generated_by" : "Module::Build version 0.3607",
    "meta-spec" : {
       "version" : "1.4",
       "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
