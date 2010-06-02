@@ -22,15 +22,12 @@ StartTest(function(t) {
         
         t.ok(parsed == 'var __a = (function (stash) { this.startContext(); eval(this.expandStashToVarsCode(stash)); ; return this.endContext(); }); __a', 'Empty template was parsed correctly')
 
-//        debugger
-        
         //======================================================================================================================================================================================================================================================
         t.diag('Parsing - mostly whitespace template')
         
         parsed = tenjin.parse("    foo  'bar'     \n   baz <tag/>   \n")
         
-        t.ok(parsed == "var __a = (function (stash) { this.startContext(); eval(this.expandStashToVarsCode(stash)); ;__contexts[0].output.push('foo  \\\'bar\\\'\\nbaz <tag/>\\n', \"\"); ; return this.endContext(); }); __a", 'White space was handled correctly + escaping works')
-        
+        t.ok(parsed == "var __a = (function (stash) { this.startContext(); eval(this.expandStashToVarsCode(stash)); ;__contexts[0].output.push('    foo  \\\'bar\\\'     \\n   baz <tag/>   \\n', \"\"); ; return this.endContext(); }); __a", 'White space was handled correctly + escaping works')
         
         //======================================================================================================================================================================================================================================================
         t.diag('Parsing - escaped expression')
@@ -53,7 +50,7 @@ StartTest(function(t) {
         
         parsed = tenjin.parse("[%\\ for(var i in stash) {\n this.someFunc(p1, p2)\n } %]")
         
-        t.ok(parsed == 'var __a = (function (stash) { this.startContext(); eval(this.expandStashToVarsCode(stash));  for(var i in stash) {\nthis.someFunc(p1, p2)\n} ; return this.endContext(); }); __a', 'Unescaped expression was parsed correctly')
+        t.ok(parsed == 'var __a = (function (stash) { this.startContext(); eval(this.expandStashToVarsCode(stash));  for(var i in stash) {\n this.someFunc(p1, p2)\n } ; return this.endContext(); }); __a', 'Unescaped expression was parsed correctly')
         
 
         t.endAsync(async0)

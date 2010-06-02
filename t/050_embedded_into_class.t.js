@@ -37,8 +37,8 @@ StartTest(function(t) {
             template : "    foo  'bar'     \n   baz <tag/>   \n"
         })
         
-        t.ok(new Test() == "foo  'bar'\nbaz <tag/>\n", 'Whitespace generally bypassed unmodified, except trimming #1')
-        t.ok(Test() == "foo  'bar'\nbaz <tag/>\n", 'Whitespace generally bypassed unmodified, except trimming #2 + mutability works')
+        t.ok(new Test() == "    foo  'bar'     \n   baz <tag/>   \n", 'Whitespace generally bypassed unmodified, except trimming #1')
+        t.ok(Test() == "    foo  'bar'     \n   baz <tag/>   \n", 'Whitespace generally bypassed unmodified, except trimming #2 + mutability works')
         
         
         //======================================================================================================================================================================================================================================================
@@ -76,8 +76,8 @@ StartTest(function(t) {
                 '%]\n'
         })
         
-        t.ok(new Test({ name1 : 'value1', name2 : 'value2' }) == 'name: [name1], value: [value1]\nname: [name2], value: [value2]\n', 'Code-based template was processed correctly #1')
-        t.ok(Test({ name1 : 'value1', name2 : 'value2' }) == 'name: [name1], value: [value1]\nname: [name2], value: [value2]\n', 'Code-based template was processed correctly #2')
+        t.ok(new Test({ name1 : 'value1', name2 : 'value2' }) == '        name: [name1], value: [value1]\n        name: [name2], value: [value2]\n', 'Code-based template was processed correctly #1')
+        t.ok(Test({ name1 : 'value1', name2 : 'value2' }) == '        name: [name1], value: [value1]\n        name: [name2], value: [value2]\n', 'Code-based template was processed correctly #2')
         
         t.endAsync(async0)
     })
