@@ -1,6 +1,8 @@
 TASKS
 =====
 
+- post-modern variant of usage should return plain strings?
+
 - Optimize away trailing empty string "" if no expression were emitted 
 - Optimize away 'output' in __context[0].output? Seems we don't replicate stash anyway..
 
