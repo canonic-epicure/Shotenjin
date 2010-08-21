@@ -1,70 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-	<head>
-        <script type="text/javascript" src="/jsan/Task/Joose/Stable.js"></script>
-    
-        <!-- Ext bridge  -->
-        
+    <head>
         <link rel="stylesheet" type="text/css" href="/jsan/Task/ExtJS/resources/css/ext-all.css">
-        <script type="text/javascript" src="/jsan/Task/ExtJS/Adapter/Ext.js"></script>
-
-        <script type="text/javascript" src="/jsan/JooseX/Meta/Lazy.js"></script>
-        <script type="text/javascript" src="/jsan/JooseX/Bridge/Ext.js"></script>
-        <script type="text/javascript">
-            JooseX.Bridge.Ext.meta.extend({ does : JooseX.Meta.Lazy })
-            Ext.extend = JooseX.Bridge.Ext.my.extend 
-        </script>
-        
-        <script type="text/javascript" src="/jsan/Task/ExtJS/All.js"></script>
-        
-        <!-- eof Ext bridge  -->
-        
-        
-        <script type="text/javascript" src="/jsan/ExtX/Reference/Slot.js"></script>
-        
         <link rel="stylesheet" type="text/css" href="/jsan/Test/Run/static/css/all.css">
-        <script type="text/javascript" src="/jsan/Task/Test/Run/ExtJS.js"></script>
         
-        <script type="text/javascript" src="/jsan/JooseX/SimpleRequest.js"></script>
-
-	</head>
-	
-	<body>
-		<script type="text/javascript">
-            var INC = []
-            Joose.A.each([ '../lib', '/jsan' ], function (path) {
-                INC.push(Test.Run.Harness.Browser.Multi.my.resolveUrl(path, true))
-            }) 
-		
-		
-			Test.Run.Harness.Browser.Multi.my.configure({
-				title : 'Shotenjin.Joosed Test Suite',
-				
-				passThroughEx : true,
-				
-				preload : [
-				    '/jsan/Task/Joose/Core.js',
-                    '/jsan/Task/JooseX/Attribute/Bootstrap.js',
-                    "/jsan/JooseX/SimpleRequest.js",
-                    '/jsan/Task/JooseX/Namespace/Depended/Web.js',
-                    {
-                        text : "JooseX.Namespace.Depended.Manager.my.INC = " + Ext.encode(INC)
-                    }
-			    ]
-			})
-			
-			
-			Test.Run.Harness.Browser.Multi.my.start(
-				'010_helpers.t.js',
-                '020_parsing_base.t.js',
-                '030_parsing_basics.t.js',
-                '040_rendering.t.js',
-                '050_embedded_into_class.t.js',
-                '060_integral.t.js',
-                '061_helper.t.js',
-                '070_capturing.t.js',
-                '080_wrapping.t.js'
-			)
-		</script>
-	</body>
+        <script type="text/javascript" src="/jsan/Task/Test/Run/WebBundle.js"></script>
+        
+        <script type="text/javascript" src="index.js"></script>
+    </head>
+    
+    <body>
+    </body>
 </html>
