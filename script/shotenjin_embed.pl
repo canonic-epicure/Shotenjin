@@ -7,23 +7,24 @@ use warnings;
 use File::Find::Rule;
 use Path::Class;
 use Getopt::LL::Simple qw(
-    --keep_whitespace
-    --kw
-    --add_indentation
-    --ai
+    --keep_whitespace|--kw
+    --add_indentation|--ai
+    --relative_cwd|--cwd
 );
 
 
-my $keep_whitespace = $ARGV{'--keep_whitespace'} || $ARGV{'--kw'};
-my $add_indentation = !$keep_whitespace && ( $ARGV{'--add_indentation'} || $ARGV{'--ai'} );
+my $keep_whitespace = $ARGV{'--keep_whitespace'};
+my $add_indentation = !$keep_whitespace && $ARGV{'--add_indentation'};
+my $relative_cwd = $ARGV{'--relative_cwd'};
 
 
 my @files;
+my $param   = $ARGV[0];
 
-if (-d $ARGV[0]) {
-    @files = File::Find::Rule->file->name('*.js')->in($ARGV[0]);
-} elsif (-e $ARGV[0]) {
-    @files = ( $ARGV[0] )
+if ($param && -d $param) {
+    @files = File::Find::Rule->file->name('*.js')->in($param);
+} elsif ($param && -e $param) {
+    @files = ( $param )
 } else {
     die "Can't find input files to process, specify it as 1st argument\n(either single file or directory to scan for *.js)\n"
 }
@@ -48,19 +49,30 @@ sub process_file {
     
     pos $content = 0;
     
-    while ($content =~ m!^((\s*)/\*tj(.*?)tj\*/(?:\s+$GENERATED_QUOTED\s+sources\s:\s'.*?'\s*$)?)!msg) {
-        
-        my $overall             = $1;
-        my $overall_quoted      = quotemeta $overall;
-        my $whitespace          = $2;
-        
-        my $template            = $3;
-        my $escaped_template;
-        
-        if ($template =~ m/^:(.+?)$/m) {
-            my $from_file_raw = $1;
+    while ($content =~ m!
+        ^(?'overall'
+          
+            (?'directive'
             
-            my $from_file = file($1)->absolute(file($file)->dir);
+                (?'whitespace'\s*) /\*tj  (?'template'.*?)  tj(?:file)?\*/  
+            )
+            
+            (?:\s+$GENERATED_QUOTED\s+sources\s:\s'.*?'\s*)?
+        )$
+    !msgx) {
+        
+        my $overall             = $+{ overall };
+        my $overall_quoted      = quotemeta $overall;
+        
+        my $whitespace          = $+{ whitespace };
+        my $directive           = $+{ directive };
+        my $template            = $+{ template };
+        
+        my $is_from_file        = $template =~ m/^file\(  (.+?)  \)$/mx;
+        
+        if ($is_from_file) {
+            
+            my $from_file = $relative_cwd ? file($1) : file($1)->absolute(file($file)->dir);
             
             if (-e $from_file) {
                 $template = $from_file->slurp;
@@ -71,27 +83,21 @@ sub process_file {
                 }
                 
             } else {
-                $template = "${whitespace}    File [$from_file] not found\n$whitespace";
+                $template = "File [$from_file] not found";
             }
             
-            $escaped_template    = $template;
-            
-            $template = ':' . $from_file_raw . "\n" . $template;
-            
-        } else {
-            $escaped_template    = $template;
-        }
+        } 
         
         # removing leading and trailing whitespace
-        $escaped_template       =~ s/^\s*(.*?)\s*$/$1/mg unless $keep_whitespace;
-#        $escaped_template       =~ s/^[\t\f ]*(.*?)[\t\f ]*$/$1/mg;
+        $template       =~ s/^\s*(.*?)\s*$/$1/mg unless $keep_whitespace;
+#        $template       =~ s/^[\t\f ]*(.*?)[\t\f ]*$/$1/mg;
         
         # escaping \, new-lines and '
-        $escaped_template       =~ s!\\!\\\\!g;
-        $escaped_template       =~ s/\r?\n/\\n/g;
-        $escaped_template       =~ s/'/\\'/g;
+        $template       =~ s!\\!\\\\!g;
+        $template       =~ s!\r?\n!\\n!g;
+        $template       =~ s!'!\\'!g;
         
-        $content_copy =~ s!$overall_quoted!$whitespace/*tj${template}tj*/\n\n$whitespace$GENERATED\n${whitespace}sources : '$escaped_template'!ms;
+        $content_copy =~ s!$overall_quoted!${directive}\n\n$whitespace$GENERATED\n${whitespace}sources : '$template'!ms;
     }
    
     if ($content ne $content_copy) {
