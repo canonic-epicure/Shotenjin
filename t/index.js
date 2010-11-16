@@ -15,21 +15,12 @@ var INC = (isNode ? require.paths : []).concat('../lib', '/jsan')
 Harness.configure({
     title : 'Shotenjin.Joosed Test Suite',
     
-    preload : Joose.is_NodeJS ? [
+    preload : [
         "jsan:Task.Joose.Core",
         "jsan:Task.JooseX.Attribute.Bootstrap",
-        "jsan:Task.JooseX.Namespace.Depended.NodeJS",
+        "jsan:Task.JooseX.Namespace.Depended.Auto",
         {
-            text : "JooseX.Namespace.Depended.Manager.my.INC = " + JSON.stringify(INC)
-        }
-        
-    ] : [
-        "jsan:Task.Joose.Core",
-        "jsan:Task.JooseX.Attribute.Bootstrap",
-        "jsan:JooseX.SimpleRequest",
-        "jsan:Task.JooseX.Namespace.Depended.Web",
-        {
-            text : "JooseX.Namespace.Depended.Manager.my.INC = " + Ext.encode(Harness.absolutizeINC(INC))
+            text : "JooseX.Namespace.Depended.Manager.my.INC = " + Harness.prepareINC(INC)
         }
     ]
 })
