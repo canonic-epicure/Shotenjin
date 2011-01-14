@@ -13,7 +13,7 @@ var INC = (isNode ? require.paths : []).concat('../lib', '/jsan')
 
 
 Harness.configure({
-    title : 'Shotenjin.Joosed Test Suite',
+    title : 'Shotenjin Test Suite',
     
     preload : [
         "jsan:Task.Joose.Core",

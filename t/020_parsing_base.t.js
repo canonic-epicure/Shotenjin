@@ -4,15 +4,15 @@ StartTest(function(t) {
     
     var async0 = t.beginAsync()
     
-    use('Shotenjin.Joosed.Template', function () {
+    use('Shotenjin.Template', function () {
         
         //======================================================================================================================================================================================================================================================
         t.diag('Sanity')
         
-        t.ok(Shotenjin.Joosed.Template, "Shotenjin.Joosed.Template is here")
+        t.ok(Shotenjin.Template, "Shotenjin.Template is here")
         
         
-        var tenjin = new Shotenjin.Joosed.Template()        
+        var tenjin = new Shotenjin.Template()        
 
         //======================================================================================================================================================================================================================================================
         t.diag('Parsing - splitAndProcess')

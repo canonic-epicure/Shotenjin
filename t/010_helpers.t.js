@@ -4,21 +4,21 @@ StartTest(function(t) {
     
     var async0 = t.beginAsync()
     
-    use('Shotenjin.Joosed.Template', function () {
+    use('Shotenjin.Template', function () {
         
         //======================================================================================================================================================================================================================================================
         t.diag('Sanity')
         
-        t.ok(Shotenjin.Joosed.Template, "Shotenjin.Joosed.Template is here")
+        t.ok(Shotenjin.Template, "Shotenjin.Template is here")
 
         
         
         //======================================================================================================================================================================================================================================================
         t.diag('Instantiation')
         
-        var tenjin = new Shotenjin.Joosed.Template()
+        var tenjin = new Shotenjin.Template()
         
-        t.ok(tenjin, "'Shotenjin.Joosed.Template' class was succesfully created")
+        t.ok(tenjin, "'Shotenjin.Template' class was succesfully created")
 
         
         

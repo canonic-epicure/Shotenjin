@@ -1,7 +1,7 @@
 Name
 ====
 
-Shotenjin.Joosed - Post-modern JavaScript templating engine
+Shotenjin - Post-modern JavaScript templating engine
 
 
 SYNOPSIS
@@ -9,7 +9,7 @@ SYNOPSIS
 
 Always classic:
 
-        var tenjin = new Shotenjin.Joosed.Template({
+        var tenjin = new Shotenjin.Template({
             sources : 'Hello [% world %]'
         })
         
@@ -99,7 +99,7 @@ Less-noisy with the helper script:
 DESCRIPTION
 ===========
 
-Shotenjin.Joosed is a Yet Another JavaScript Templating Engine, based on Shotenjin by [Makoto Kuwata](http://www.kuwata-lab.com/)
+Shotenjin is a Yet Another JavaScript Templating Engine, based on Tenjin by [Makoto Kuwata](http://www.kuwata-lab.com/)
 Shotenjin was ported to Joose, along with some improvements.
 
 The main difference of Shotenjin from other templating solutions is that for the templating language it uses JavaScript itself. 
@@ -123,7 +123,7 @@ Such expression are represented with the following construct
         
         [% name + ' ' + surname %]
         
-        [% Digest.MD5.my.md5_hex(response) %]
+        [% Digest.MD5.md5_hex(response) %]
 
 The value of the expression will be escaped before adding to template, according to this table:
 
@@ -186,9 +186,9 @@ USAGE
 Classic
 -------
 
-Shotenjin.Joosed can be used in "classic" way, in which you are responsible for instantiation and rendering: 
+Shotenjin can be used in "classic" way, in which you are responsible for instantiation and rendering: 
 
-        var tenjin = new Shotenjin.Joosed.Template({
+        var tenjin = new Shotenjin.Template({
             sources : 'Hello [% world %]'
         })
         
@@ -203,7 +203,7 @@ Post-modern
 In the "post-modern" usage scenario, the template instance is embedded into Joose class:
 
         Class('Table.Cell', {
-            meta : 'Shotenjin.Joosed',
+            meta : 'Shotenjin',
             
             template : '<td>[% text %]</td>'
         })
@@ -215,10 +215,10 @@ Additional helper `Template` is introduced to simplify the declaration:
             template : '<td>[% text %]</td>'
         })
         
-By default, the class with the embedded template is a subclass of `Shotenjin.Joosed.Template`. 
+By default, the class with the embedded template is a subclass of `Shotenjin.Template`. 
 
 You can define additional methods (they will be available in templating function) or attributes, inherit from another template,
-apply Roles or something else. Please refer to [Joose manual](http://openjsan.org/go?l=Joose.Manual) to know what you can do with Joose classes.
+apply Roles or something else. Please refer to [Joose manual](http://bit.ly/joose_manual) to know what you can do with Joose classes.
 A simple example:
 
         Template('Table.Cell', {
@@ -258,7 +258,7 @@ Helper script
 -------------
 
 You may have noticed, that writing templates into JavaScript can be a cumbersome task, because you need to manally escape each special symbol, like ` \ `
-To address this issue `Shotenjin.Joosed` comes with the helper script `shotenjin_embed.pl`. Its a simple shell script, which examine the passed file 
+To address this issue `Shotenjin` comes with the helper script `shotenjin_embed.pl`. Its a simple shell script, which examine the passed file 
 (or files in directory) for the templates, embedded into JavaScript comments `/*tj ... tj*/`
 
         Template('Book', {
@@ -305,7 +305,7 @@ Script accepts a single command-line argument, which should be either the path t
 API
 ===
 
-During evalution of the template, `this` value is associated with the instance of `Shotenjin.Joosed.Template` (or its subclass), so naturally all the methods of this class are available.
+During evalution of the template, `this` value is associated with the instance of `Shotenjin.Template` (or its subclass), so naturally all the methods of this class are available.
 
 
 Methods
@@ -344,10 +344,10 @@ Escapes and adds each of passed arguments to the output of the *current context*
 Unescaped version of `echo`.
 
 
- - `this.wrap(Class|Shotenjin.Joosed.Template template, Object stash, Function func)`
+ - `this.wrap(Class|Shotenjin.Template template, Object stash, Function func)`
  
 First captures the content generated into the passed `func`, then assign it to the `content` key of the passed `stash` object and renders the wrapping template with it.
-Wrapping `template` can be passed as the instance of `Shotenjin.Joosed.Template` or as Class.
+Wrapping `template` can be passed as the instance of `Shotenjin.Template` or as Class.
 
 
  - `this.escapeXml(String str)`
@@ -520,39 +520,31 @@ error. To fix it, add punctuation:
 GETTING HELP
 ============
 
-This extension is supported via github issues tracker: [http://github.com/SamuraiJack/Shotenjin-Joosed/issues](http://github.com/SamuraiJack/Shotenjin-Joosed/issues)
+This extension is supported via github issues tracker: <http://github.com/SamuraiJack/Shotenjin/issues>
 
-For general Joose questions you can also visit #joose on irc.freenode.org. 
+For general Joose questions you can also visit [#joose](http://webchat.freenode.net/?randomnick=1&channels=joose&prompt=1) on irc.freenode.org. 
 
 
 ACKNOWLEDGEMENTS
 ================
 
-Many thanks to Makoto Kuwata for his Shotenjin implementation, on which this engine is based. 
+Many thanks to Makoto Kuwata for his Tenjin implementation, on which this engine is based. 
 
 
 
 SEE ALSO
 ========
 
-[Jemplate](http://jemplate.net/)
-
-Port of Template::Toolkit to JavaScript
+Port of Template::Toolkit to JavaScript: [Jemplate](http://jemplate.net/)
 
 
-[Closure Templates](http://code.google.com/closure/templates/)
-
-Google solution 
+Google solution: [Closure Templates](http://code.google.com/closure/templates/)
 
 
-[Ext.XTemplate](http://www.extjs.com/deploy/dev/docs/?class=Ext.XTemplate)
-
-Templating solution of ExtJS framework
+Templating solution of the ExtJS framework: [Ext.XTemplate](http://www.extjs.com/deploy/dev/docs/?class=Ext.XTemplate)
 
 
-[http://joose.github.com/Joose/doc/html/Joose.html](http://joose.github.com/Joose/doc/html/Joose.html)
-
-Documentation for Joose
+General documentation for Joose: <http://joose.github.com/Joose/doc/html/Joose.html>
 
 
 BUGS
@@ -560,7 +552,7 @@ BUGS
 
 All complex software has bugs lurking in it, and this module is no exception.
 
-Please report any bugs through the web interface at [http://github.com/SamuraiJack/Shotenjin-Joosed/issues](http://github.com/SamuraiJack/Shotenjin-Joosed/issues)
+Please report any bugs through the web interface at <http://github.com/SamuraiJack/Shotenjin/issues>
 
 
 
@@ -574,7 +566,7 @@ Nickolay Platonov [nplatonov@cpan.org](mailto:nplatonov@cpan.org)
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright (c) 2009, Nickolay Platonov
+Copyright (c) 2011, Nickolay Platonov
 
 All rights reserved.
 
@@ -585,3 +577,4 @@ Redistribution and use in source and binary forms, with or without modification,
 * Neither the name of Nickolay Platonov nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission. 
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+

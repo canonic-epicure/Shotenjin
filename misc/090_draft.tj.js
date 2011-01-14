@@ -1,6 +1,6 @@
 Class('My.Template', {
     
-    meta : 'Shotenjin.Joosed',
+    meta : 'Shotenjin',
     
     template : {
         /*tj
@@ -37,5 +37,4 @@ Class('My.Template', {
             return format(p1, p2, this.stash.p3)
         }
     }
-
 })

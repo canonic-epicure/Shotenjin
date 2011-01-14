@@ -4,12 +4,12 @@ StartTest(function(t) {
     
     var async0 = t.beginAsync()
     
-    use('Shotenjin.Joosed', function () {
+    use('Shotenjin', function () {
         
         //======================================================================================================================================================================================================================================================
         t.diag('Sanity')
         
-        t.ok(Shotenjin.Joosed, "Shotenjin.Joosed is here")
+        t.ok(Shotenjin, "Shotenjin is here")
         t.ok(Template, "Template helper is here")
         
         
