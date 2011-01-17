@@ -23,20 +23,16 @@ StartTest(function(t) {
                 /*tj
         
                     [%\
-                        var pos = 1
-                        
-                        Joose.O.each(stash, function (value, name) {
-                            if (pos % 2) {
+                        Joose.A.each(arr, function (value, index) {
+                            if (index % 2) {
                     %]
-                                [% "name: [" + name + "], value: [" + value + "]" %]
+                                [% "index: [" + index + "], value: [" + value + "]" %]
                     [%\
                             } else {
                     %]
-                                [% "value: [" + value + "], name: [" + name + "]" %]
+                                [% "value: [" + value + "], index: [" + index + "]" %]
                     [%\
                             }
-                            
-                            pos++
                         })
                     %]
                 
@@ -48,8 +44,8 @@ StartTest(function(t) {
         //======================================================================================================================================================================================================================================================
         t.diag('Rendering')
         
-        t.ok(My.Template({ name1 : 'value1', name2 : 'value2' }) == 'name: [name1], value: [value1]\nvalue: [value2], name: [name2]\n', 'Complex template was rendered correctly')
-
+        t.ok(My.Template({ arr : [ 'foo', 'bar' ] }) == 'value: [foo], index: [0]\nindex: [1], value: [bar]\n', 'Complex template was rendered correctly')
+        
         
         
         //======================================================================================================================================================================================================================================================
@@ -61,15 +57,12 @@ StartTest(function(t) {
             
             template : {
                 /*tj
-                    Passed:
-                    [%\ var pos = 1; %]
-                    [%\ Joose.O.each(stash, function (value, name) { %]
-                    [%\     if (pos % 2) { %]
-                                [% "name: [" + name + "], value: [" + value + "]" %]
+                    [%\ Joose.A.each(arr, function (value, index) { %]
+                    [%\     if (index % 2) { %]
+                                [% "index: [" + index + "], value: [" + value + "]" %]
                     [%\     } else { %]
-                                [% "value: [" + value + "], name: [" + this.upperCaseHelper(name) + "]" %]
+                                [% "value: [" + this.upperCaseHelper(value) + "], index: [" + index + "]" %]
                     [%\     } %]
-                    [%\     pos++ %]
                     [%\ }, this) %]
                 
                 tj*/
@@ -88,7 +81,7 @@ StartTest(function(t) {
         //======================================================================================================================================================================================================================================================
         t.diag('Rendering')
         
-        t.ok(My.Template1({ name1 : 'value1', name2 : 'value2' }) == 'Passed:\nname: [name1], value: [value1]\nvalue: [value2], name: [NAME2]\n', 'Complex template was rendered correctly #2 + helper method was called')
+        t.ok(My.Template1({ arr : [ 'foo', 'bar' ] }) == 'value: [FOO], index: [0]\nindex: [1], value: [bar]\n', 'Complex template was rendered correctly #2 + helper method was called')
         
         
         t.endAsync(async0)
