@@ -20,7 +20,7 @@ Harness.configure({
         "jsan:Task.JooseX.Attribute.Bootstrap",
         "jsan:Task.JooseX.Namespace.Depended.Auto",
         {
-            text : "JooseX.Namespace.Depended.Manager.my.INC = " + Harness.prepareINC(INC)
+            text : "use.paths = " + Harness.prepareINC(INC)
         }
     ]
 })
@@ -29,8 +29,8 @@ Harness.configure({
 Harness.start(
     '010_helpers.t.js',
     '020_parsing_base.t.js',
-    '030_parsing_basics.t.js',
-    '040_rendering.t.js',
+    '030_render_basic.t.js',
+    
     '050_embedded_into_class.t.js',
     '060_integral.t.js',
     '061_helper.t.js',

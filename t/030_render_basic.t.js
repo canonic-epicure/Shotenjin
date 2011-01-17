@@ -56,16 +56,29 @@ StartTest(function(t) {
         
         //======================================================================================================================================================================================================================================================
         t.diag('Parsing - statements')
+
+        var tenjin = new Shotenjin.Template({
+            /*tj
+            
+                [% Joose.O.each(stash, function (value, name) { %]
+                 
+                    [% "name: [" + name + "], value: [" + value + "] %] 
+                
+                [% }) %]
+            
+            tj*/
+        })        
         
-        tenjin.setSources(
-            '[%\\\n' + 
-            '    Joose.O.each(stash, function (value, name) {\n' + 
-            '%]\n' + 
-            '        [% "name: [" + name + "], value: [" + value + "]\\n" %]' + 
-            '[%\\\n' + 
-            '    })\n' + 
-            '%]\n'
-        )
+        
+//        tenjin.setSources(
+//            '[%\\\n' + 
+//            '    Joose.O.each(stash, function (value, name) {\n' + 
+//            '%]\n' + 
+//            '        [% "name: [" + name + "], value: [" + value + "]\\n" %]' + 
+//            '[%\\\n' + 
+//            '    })\n' + 
+//            '%]\n'
+//        )
         
         t.ok(tenjin.render({ name1 : 'value1', name2 : 'value2' }) == '        name: [name1], value: [value1]\n        name: [name2], value: [value2]\n', 'Code-based template was processed correctly, newline after statemets ate')
 
