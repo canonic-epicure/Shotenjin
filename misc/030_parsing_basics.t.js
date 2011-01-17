@@ -1,59 +1,156 @@
-StartTest(function(t) {
+Name
+====
+
+Shotenjin - Some clever yet compact description
+
+
+SYNOPSIS
+========
+
+        // declaring our class
+        Class('Shotenjin', {
+        
+        })
+        
+        // then instantiating it
+        var instance = new Shotenjin({
+        })
+        
+        // and doing something totally awesome with it :D
+        instance.method(param1, param2)
+        
+
+If you are reading this file as README from github, you may want to open [this link](http://samuraijack.github.com/Shotenjin) instead. 
+
+
+INSTALLATION
+============
+
+From `npm`:
     
-	t.plan(6)
+    > [sudo] npm install shotenjin
+
+Tarballs are available for downloading at: <http://search.npmjs.org/#/shotenjin>
+
+
+SETUP
+=====
+
+In NodeJS:
+
+    require('task-joose-nodejs')
+    require('shotenjin')
     
-    var async0 = t.beginAsync()
     
-    use('Shotenjin.Template', function () {
-        
-        //======================================================================================================================================================================================================================================================
-        t.diag('Sanity')
-        
-        t.ok(Shotenjin.Template, "Shotenjin.Template is here")
-        
-        
-        var tenjin = new Shotenjin.Template()        
-        
-        
-        //======================================================================================================================================================================================================================================================
-        t.diag('Parsing - empty template')
-        
-        var parsed = tenjin.parse('')
-        
-        t.ok(parsed == 'var __a = (function (stash) { this.startContext(); eval(this.expandStashToVarsCode(stash)); ; return this.endContext(); }); __a', 'Empty template was parsed correctly')
+In browsers (assuming you've completed the 3.1 item from this [document](http://joose.github.com/Joose/doc/html/Joose/Manual/Installation.html)):
 
-        //======================================================================================================================================================================================================================================================
-        t.diag('Parsing - mostly whitespace template')
-        
-        parsed = tenjin.parse("    foo  'bar'     \n   baz <tag/>   \n")
-        
-        t.ok(parsed == "var __a = (function (stash) { this.startContext(); eval(this.expandStashToVarsCode(stash)); ;__contexts[0].output.push('    foo  \\\'bar\\\'     \\n   baz <tag/>   \\n', \"\"); ; return this.endContext(); }); __a", 'White space was handled correctly + escaping works')
-        
-        //======================================================================================================================================================================================================================================================
-        t.diag('Parsing - escaped expression')
-        
-        parsed = tenjin.parse("[% name[1] %]")
-        
-        t.ok(parsed == "var __a = (function (stash) { this.startContext(); eval(this.expandStashToVarsCode(stash)); ;__contexts[0].output.push(__me.escapeXml( name[1] ), \"\"); ; return this.endContext(); }); __a", 'Escaped expression was parsed correctly')
+    <script type="text/javascript" src="/jsan/Task/Joose/Core.js"></script>
+    <script type="text/javascript" src="/jsan/Task/Shotenjin/Core.js"></script>
 
-        
-        //======================================================================================================================================================================================================================================================
-        t.diag('Parsing - unescaped expression')
 
-        parsed = tenjin.parse("[%= name %]")
-        
-        t.ok(parsed == "var __a = (function (stash) { this.startContext(); eval(this.expandStashToVarsCode(stash)); ;__contexts[0].output.push( name , \"\"); ; return this.endContext(); }); __a", 'Unescaped expression was parsed correctly')
 
-        
-        //======================================================================================================================================================================================================================================================
-        t.diag('Parsing - statements #1')
-        
-        parsed = tenjin.parse("[%\\ for(var i in stash) {\n this.someFunc(p1, p2)\n } %]")
-        
-        t.ok(parsed == 'var __a = (function (stash) { this.startContext(); eval(this.expandStashToVarsCode(stash));  for(var i in stash) {\n this.someFunc(p1, p2)\n } ; return this.endContext(); }); __a', 'Unescaped expression was parsed correctly')
-        
+DESCRIPTION
+===========
 
-        t.endAsync(async0)
-    })
-    
-})    
+`Shotenjin` is a stub for Joose-orientied JSAN modules.
+
+
+ISA
+===
+
+None.
+
+
+DOES
+====
+
+None.
+
+
+TRAITS
+======
+
+None.
+
+
+
+ATTRIBUTES
+==========
+
+### attributeName
+
+> `AttributeType attributeName`
+
+> Attribute description
+
+
+METHODS
+=======
+
+### methodName
+
+> `method signature`
+
+> Method description
+
+
+EXAMPLES
+========
+
+Our class can be used like this:
+
+        // then instantiating it
+        var instance = new Shotenjin({
+        })
+
+and like that:
+
+        // then instantiating it
+        var instance = new Shotenjin({
+        })
+
+
+GETTING HELP
+============
+
+This extension is supported via github issues tracker: <http://github.com/SamuraiJack/Shotenjin/issues>
+
+For general Joose questions you can also visit [#joose](http://webchat.freenode.net/?randomnick=1&channels=joose&prompt=1) 
+on irc.freenode.org or mailing list at: <http://groups.google.com/group/joose-js>
+ 
+
+
+SEE ALSO
+========
+
+Web page of this module: <http://github.com/SamuraiJack/Shotenjin/>
+
+General documentation for Joose: <http://joose.github.com/Joose>
+
+
+BUGS
+====
+
+All complex software has bugs lurking in it, and this module is no exception.
+
+Please report any bugs through the web interface at <http://github.com/SamuraiJack/Shotenjin/issues>
+
+
+
+AUTHORS
+=======
+
+Nickolay Platonov <nplatonov@cpan.org>
+
+
+
+
+
+COPYRIGHT AND LICENSE
+=====================
+
+This software is Copyright (c) 2011 by Nickolay Platonov.
+
+This is free software, licensed under:
+
+  The GNU Lesser General Public License, Version 3, June 2007

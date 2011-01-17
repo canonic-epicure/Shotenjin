@@ -1,7 +1,7 @@
 Name
 ====
 
-Shotenjin - Post-modern JavaScript templating engine
+Shotenjin - Post-modern JavaScript template engine
 
 
 SYNOPSIS
@@ -94,6 +94,35 @@ Less-noisy with the helper script:
         })
 
         var rendered = Book()
+
+If you are reading this file as README from github, you may want to open [this link](http://samuraijack.github.com/Shotenjin) instead. 
+
+
+
+INSTALLATION
+============
+
+From `npm`:
+    
+    > [sudo] npm install shotenjin
+
+Tarballs are available for downloading at: <http://search.npmjs.org/#/shotenjin>
+
+
+SETUP
+=====
+
+In NodeJS:
+
+    require('task-joose-nodejs')
+    require('shotenjin')
+    
+    
+In browsers (assuming you've completed the 3.1 item from this [document](http://joose.github.com/Joose/doc/html/Joose/Manual/Installation.html)):
+
+    <script type="text/javascript" src="/jsan/Task/Joose/Core.js"></script>
+    <script type="text/javascript" src="/jsan/Task/Shotenjin/Core.js"></script>
+
 
 
 DESCRIPTION
@@ -537,7 +566,9 @@ GETTING HELP
 
 This extension is supported via github issues tracker: <http://github.com/SamuraiJack/Shotenjin/issues>
 
-For general Joose questions you can also visit [#joose](http://webchat.freenode.net/?randomnick=1&channels=joose&prompt=1) on irc.freenode.org. 
+For general Joose questions you can also visit [#joose](http://webchat.freenode.net/?randomnick=1&channels=joose&prompt=1) 
+on irc.freenode.org or mailing list at: <http://groups.google.com/group/joose-js>
+
 
 
 ACKNOWLEDGEMENTS
