@@ -1,9 +1,4 @@
-_build
-Build
-blib
+.build
 .project
 .externalToolBuilders
-MANIFEST.bak
-Makefile.PL
-/doc
-/inc/*
+Shotenjin-*
