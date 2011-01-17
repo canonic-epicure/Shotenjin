@@ -60,27 +60,16 @@ StartTest(function(t) {
         var tenjin = new Shotenjin.Template({
             /*tj
             
-                [% Joose.O.each(stash, function (value, name) { %]
+                [%\ Joose.O.each(stash, function (value, name) { %]
                  
-                    [% "name: [" + name + "], value: [" + value + "] %] 
-                
-                [% }) %]
-            
+                    [% "name: [" + name + "], value: [" + value + "]" %]
+                     
+                [%\ }) %]
             tj*/
         })        
         
+        t.ok(tenjin.render({ name1 : 'value1', name2 : 'value2' }) == 'name: [name1], value: [value1]\nname: [name2], value: [value2]\n', 'Code-based template was processed correctly, newline after statemets ate')
         
-//        tenjin.setSources(
-//            '[%\\\n' + 
-//            '    Joose.O.each(stash, function (value, name) {\n' + 
-//            '%]\n' + 
-//            '        [% "name: [" + name + "], value: [" + value + "]\\n" %]' + 
-//            '[%\\\n' + 
-//            '    })\n' + 
-//            '%]\n'
-//        )
-        
-        t.ok(tenjin.render({ name1 : 'value1', name2 : 'value2' }) == '        name: [name1], value: [value1]\n        name: [name2], value: [value2]\n', 'Code-based template was processed correctly, newline after statemets ate')
 
         t.endAsync(async0)
     })

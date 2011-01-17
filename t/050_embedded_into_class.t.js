@@ -66,18 +66,20 @@ StartTest(function(t) {
         t.diag('Parsing - statements')
         
         Test.meta.extend({
-            template : 
-                '[%\\\n' + 
-                '    Joose.O.each(stash, function (value, name) {\n' + 
-                '%]\n' + 
-                '        [% "name: [" + name + "], value: [" + value + "]\\n" %]' + 
-                '[%\\\n' + 
-                '    })\n' + 
-                '%]\n'
+            template : {
+                /*tj
+                
+                    [%\ Joose.O.each(stash, function (value, name) { %]
+                     
+                        [% "name: [" + name + "], value: [" + value + "]" %]
+                         
+                    [%\ }) %]
+                tj*/
+            }
         })
         
-        t.ok(new Test({ name1 : 'value1', name2 : 'value2' }) == '        name: [name1], value: [value1]\n        name: [name2], value: [value2]\n', 'Code-based template was processed correctly #1')
-        t.ok(Test({ name1 : 'value1', name2 : 'value2' }) == '        name: [name1], value: [value1]\n        name: [name2], value: [value2]\n', 'Code-based template was processed correctly #2')
+        t.ok(new Test({ name1 : 'value1', name2 : 'value2' }) == 'name: [name1], value: [value1]\nname: [name2], value: [value2]\n', 'Code-based template was processed correctly #1')
+        t.ok(Test({ name1 : 'value1', name2 : 'value2' }) == 'name: [name1], value: [value1]\nname: [name2], value: [value2]\n', 'Code-based template was processed correctly #2')
         
         t.endAsync(async0)
     })
